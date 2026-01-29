@@ -3,118 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKP Germany - Professionelle Ausrüstung</title>
-    <meta name="description" content="Professioneller Schutz und erstklassige Ausstattung für Sicherheit, Justizvollzug und Rettungsdienste.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/sections/navigation.css">
-    <link rel="stylesheet" href="../css/sections/hero.css">
-    <link rel="stylesheet" href="../css/sections/divisions.css">
-    <link rel="stylesheet" href="../css/sections/footer.css">
-    <link rel="alternate" hreflang="de" href="index.html">
-    <link rel="alternate" hreflang="en" href="../en/index.html">
-    <link rel="alternate" hreflang="x-default" href="index.html">
+    <title>CKP Germany - Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s;
+        }
+        
+        .nav.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+        
+        .logo-dots { font-size: 1.2rem; color: #ff6600; letter-spacing: -0.2em; }
+        .logo-text { font-size: 1.3rem; font-weight: 700; letter-spacing: 0.1em; }
+        .logo-sub { font-size: 0.65rem; letter-spacing: 0.15em; color: #888; }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .nav-lang {
+            display: flex;
+            gap: 0.5rem;
+            padding-left: 1.5rem;
+            border-left: 1px solid #e0e0e0;
+        }
+        
+        .nav-lang a.active { color: #ff6600; font-weight: 600; }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #ffffff;
+        }
+        
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 650px;
+            padding: 0 0 0 4rem;
+        }
+        
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.05;
+            color: #1a1a1a;
+            margin-bottom: 1.8rem;
+        }
+        
+        .hero-highlight {
+            color: #ff6600;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #5a5a5a;
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+        }
+        
+        .hero-button {
+            background: #ff6600;
+            color: #ffffff;
+            border: none;
+            padding: 1rem 2.8rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .hero-button:hover {
+            background: #ff7700;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Image - DAS BILD! */
+        .hero-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 65%;
+            height: 100%;
+            z-index: 1;
+            background: #f0f0f0 url('https://images.unsplash.com/photo-1551677645-e2a83d74f2ad?w=1200&h=800&fit=crop&q=80') center right / cover no-repeat;
+        }
+        
+        /* Fade Overlay */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: linear-gradient(
+                to right,
+                #ffffff 0%,
+                rgba(255, 255, 255, 0.95) 8%,
+                rgba(255, 255, 255, 0.85) 18%,
+                rgba(255, 255, 255, 0.6) 30%,
+                rgba(255, 255, 255, 0.3) 45%,
+                rgba(255, 255, 255, 0.1) 60%,
+                transparent 75%
+            );
+        }
+        
+        /* Test Content */
+        .test-content {
+            height: 150vh;
+            padding: 4rem;
+            background: #fafafa;
+        }
+    </style>
 </head>
 <body>
-    <nav class="shop-nav">
+    
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
+                <span class="logo-dots">⋮⋮⋮</span>
                 <span class="logo-text">CKP</span>
-                <span class="logo-tagline">GERMANY GMBH</span>
+                <span class="logo-sub">GERMANY GMBH</span>
             </a>
             <div class="nav-links">
-                <a href="#divisions">Produkte</a>
-                <a href="#contact">Kontakt</a>
-                <div class="language-switcher">
-                    <a href="index.html" class="lang-btn active">DE</a>
-                    <span class="lang-separator">|</span>
-                    <a href="../en/index.html" class="lang-btn">EN</a>
+                <a href="index.html">HOME</a>
+                <a href="#about">ABOUT US</a>
+                <a href="#contact">CONTACT</a>
+                <div class="nav-lang">
+                    <a href="index.html" class="active">DE</a>
+                    <span>|</span>
+                    <a href="#">EN</a>
                 </div>
             </div>
         </div>
     </nav>
-    <div class="hero-section">
+
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="hero-content">
-            <h2 class="hero-title">Ausrüstung für Menschen, die <span class="highlight">Verantwortung</span> tragen</h2>
-            <p class="hero-subtitle">Professioneller Schutz und erstklassige Ausstattung für Sicherheit, Justizvollzug und Rettungsdienste.</p>
-            <div class="cta-container">
-                <a href="#divisions" class="cta-button primary">MEHR ERFAHREN</a>
-                <a href="#contact" class="cta-button secondary">KONTAKT AUFNEHMEN</a>
-            </div>
+            <h1 class="hero-title">
+                Ausrüstung für<br>
+                Menschen, die<br>
+                <span class="hero-highlight">Verantwortung</span> tragen
+            </h1>
+            <p class="hero-subtitle">
+                Professioneller Schutz und erstklassige Ausstattung für<br>
+                Sicherheit, Justizvollzug und Rettungsdienste.
+            </p>
+            <button class="hero-button">MEHR ERFAHREN</button>
         </div>
-        <div class="hero-background"></div>
-    </div>
-    <section id="divisions" class="divisions-section">
-        <div class="division-card tactical" onclick="window.location.href='tactical.html'">
-            <div class="division-image"><div class="division-overlay"></div></div>
-            <div class="division-content">
-                <h3 class="division-title">CKP TACTICAL</h3>
-                <p class="division-subtitle">SECURITY & LAW ENFORCEMENT</p>
-                <button class="division-button">SECURITY & LAW ENFORCEMENT</button>
-            </div>
-        </div>
-        <div class="division-card care" onclick="window.location.href='care.html'">
-            <div class="division-image"><div class="division-overlay"></div></div>
-            <div class="division-content">
-                <h3 class="division-title">CKP CARE</h3>
-                <p class="division-subtitle">MEDICAL & RESCUE</p>
-                <button class="division-button">MEDICAL & RESCUE</button>
-            </div>
-        </div>
-    </section>
-    
-    <section class="features-section">
-        <div class="features-grid">
-            <div class="feature-box">
-                <div class="feature-icon-box">🛡️</div>
-                <div class="feature-title">Geprüfte Qualität</div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon-box">🚚</div>
-                <div class="feature-title">Schneller Versand</div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon-box">👨‍💼</div>
-                <div class="feature-title">Experten-Beratung</div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon-box">💳</div>
-                <div class="feature-title">Sichere Zahlung</div>
-            </div>
+        
+        <div class="hero-image">
+            <div class="hero-overlay"></div>
         </div>
     </section>
 
-    <section id="contact" class="bottom-cta">
-        <div class="bottom-cta-content">
-            <h3>Haben Sie Fragen?</h3>
-            <p>Unser Expertenteam steht Ihnen zur Verfügung, um die perfekte Ausrüstungslösung für Ihre spezifischen Anforderungen zu finden.</p>
-            <div class="bottom-cta-buttons">
-                <a href="mailto:info@ckp-germany.com" class="bottom-cta-button primary">KONTAKT AUFNEHMEN</a>
-                <a href="tel:+4942" class="bottom-cta-button secondary">ANRUFEN</a>
-            </div>
-        </div>
-    </section>
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>CKP Germany GmbH</h4>
-                <p>Experten-Ausrüstungslösungen für Hochrisiko-Umgebungen. Unsere Sicherheits-, Justiz- und Notfallprofis verlangen höchste Schutzstandards.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="tactical.html">CKP Tactical</a></li>
-                    <li><a href="care.html">CKP Care</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Kontakt</h4>
-                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bdd4d3dbd2fdded6cd90dad8cfd0dcd3c493ded2d0">[email&#160;protected]</a></p>
-                <p>Telefon: +49 (0) 421 XXX XXXX</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 CKP German
+    <!-- Test Content -->
+    <div class="test-content">
+        <h2 style="color: #1a1a1a;">Scroll nach unten 👇</h2>
+        <p style="color: #4a4a4a; margin-top: 1rem;">Die Navigation wird kleiner!</p>
+    </div>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>

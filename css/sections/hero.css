@@ -1,183 +1,182 @@
-/* Hero Section - Light Theme */
+/* Hero Section */
 
-.hero-section {
+.hero {
     position: relative;
-    min-height: 70vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
     align-items: center;
     overflow: hidden;
     background: #ffffff;
 }
 
-.hero-background {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60%;
-    height: 100%;
-    background: 
-        linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 15%, rgba(255, 255, 255, 0.3) 40%, transparent 70%),
-        url('https://images.unsplash.com/photo-1551677645-e2a83d74f2ad?w=1200&h=800&fit=crop&q=80') center/cover no-repeat;
-    z-index: 1;
-}
-
-/* When you add your image, replace the URL above with: url('../images/security_horizontal_haus.png') */
-
+/* Hero Content - Left Side */
 .hero-content {
     position: relative;
     z-index: 10;
-    text-align: left;
-    max-width: 600px;
-    padding: 4rem 2rem 4rem 4rem;
-    animation: fadeInUp 1s ease-out;
+    max-width: 650px;
+    padding: 0 0 0 4rem;
+    animation: fadeInUp 0.8s ease;
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    line-height: 1.05;
     color: #1a1a1a;
-    animation: fadeInUp 1s ease-out 0.2s backwards;
+    margin-bottom: 1.8rem;
+    letter-spacing: -0.02em;
 }
 
-.highlight {
+.hero-highlight {
     color: #ff6600;
-    position: relative;
-    display: block;
 }
 
 .hero-subtitle {
     font-size: 1rem;
-    color: #4a4a4a;
-    max-width: 500px;
-    margin: 0 0 2.5rem;
-    font-weight: 400;
     line-height: 1.7;
-    animation: fadeInUp 1s ease-out 0.4s backwards;
+    color: #5a5a5a;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    max-width: 550px;
 }
 
-.cta-container {
-    display: flex;
-    gap: 1rem;
-    animation: fadeInUp 1s ease-out 0.6s backwards;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    text-transform: uppercase;
+.hero-button {
+    background: #ff6600;
+    color: #ffffff;
     border: none;
+    padding: 1rem 2.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.15);
 }
 
-.cta-button.primary {
-    background: #ff6600;
-    color: white;
-}
-
-.cta-button.secondary {
-    background: transparent;
-    color: #1a1a1a;
-    border: 2px solid #1a1a1a;
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-.cta-button:hover::before {
-    left: 100%;
-}
-
-.cta-button.primary:hover {
+.hero-button:hover {
     background: #ff7700;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(255, 102, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.25);
 }
 
-.cta-button.secondary:hover {
-    background: #1a1a1a;
-    color: white;
-    transform: translateY(-2px);
+.hero-button:active {
+    transform: translateY(0);
+}
+
+/* Hero Image - Right Side with Fade */
+.hero-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%;
+    height: 100%;
+    background: url('/images/security_horizontal_haus.png') center right / cover no-repeat;
+    z-index: 1;
+}
+
+/* Fallback if image doesn't load */
+.hero-image::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    z-index: -1;
+}
+
+/* Fade Overlay - sanfter Übergang */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        #ffffff 0%,
+        rgba(255, 255, 255, 0.95) 8%,
+        rgba(255, 255, 255, 0.85) 18%,
+        rgba(255, 255, 255, 0.6) 30%,
+        rgba(255, 255, 255, 0.3) 45%,
+        rgba(255, 255, 255, 0.1) 60%,
+        transparent 75%
+    );
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-    .hero-section {
-        grid-template-columns: 1fr;
-        min-height: 60vh;
-    }
-    
-    .hero-background {
-        width: 100%;
-        background: 
-            linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.9) 70%, #ffffff 100%),
-            url('https://images.unsplash.com/photo-1551677645-e2a83d74f2ad?w=1200&h=800&fit=crop&q=80') center/cover no-repeat;
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 3.2rem;
     }
     
     .hero-content {
-        padding: 3rem 2rem;
-        max-width: 100%;
+        padding-left: 3rem;
     }
-    
+}
+
+@media (max-width: 1024px) {
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
     
-    .cta-container {
-        flex-direction: column;
+    .hero-content {
+        padding-left: 2rem;
+        max-width: 550px;
     }
     
-    .cta-button {
-        text-align: center;
+    .hero-image {
+        width: 55%;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-section {
-        min-height: 50vh;
+    .hero {
+        height: 70vh;
+        min-height: 500px;
+    }
+    
+    .hero-content {
+        padding: 2rem 1.5rem;
+        max-width: 90%;
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
     
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
     }
     
     .hero-subtitle {
         font-size: 0.95rem;
+        margin-bottom: 2rem;
     }
     
-    .cta-button {
-        padding: 0.8rem 2rem;
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content {
-        padding: 2rem 1.5rem;
+    .hero-image {
+        width: 100%;
     }
     
-    .hero-title {
-        font-size: 1.75rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 0.9rem;
+    .hero-overlay {
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(255, 255, 255, 0.7) 40%,
+            rgba(255, 255, 255, 0.95) 100%
+        );
     }
 }

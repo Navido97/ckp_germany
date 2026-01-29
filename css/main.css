@@ -1,83 +1,28 @@
-/* CKP Shop - Main CSS */
+/* Main CSS - Reset & Base Styles */
 
-/* CSS Variables */
-:root {
-    --tactical-black: #0a0a0a;
-    --tactical-dark: #1a1a1a;
-    --tactical-gray: #2d2d2d;
-    --tactical-accent: #ff4500;
-    --care-teal: #00b8a9;
-    --care-blue: #0088cc;
-    --text-primary: #ffffff;
-    --text-secondary: #cccccc;
-    --text-muted: #888888;
-}
-
-/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
-    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: var(--tactical-black);
-    color: var(--text-primary);
+    font-family: 'Work Sans', -apple-system, sans-serif;
+    background-color: #ffffff;
+    color: #1a1a1a;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Links */
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Buttons */
-button {
-    font-family: inherit;
-    cursor: pointer;
-}
-
-/* Images */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* Utility Classes */
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 1rem;
-    }
+/* Colors */
+:root {
+    --orange: #ff6600;
+    --white: #ffffff;
+    --black: #1a1a1a;
+    --gray: #4a4a4a;
+    --light-gray: #f5f5f5;
 }
