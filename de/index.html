@@ -11,12 +11,13 @@
 
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/sections/hero.css">
+    <!-- ✅ NEW: divisions section styles -->
+    <link rel="stylesheet" href="../css/sections/divisions.css">
 </head>
 <body>
-    
+
     <!-- Header wird per JS geladen -->
     <script src="../js/components/header.js"></script>
-
 
     <!-- Hero Section -->
     <section class="hero">
@@ -32,9 +33,67 @@
             </p>
             <button class="hero-button">MEHR ERFAHREN</button>
         </div>
-        
+
         <div class="hero-image">
             <div class="hero-overlay"></div>
+        </div>
+    </section>
+
+    <!-- ✅ NEW: Divisions Section -->
+    <section class="divisions" id="divisions">
+        <div class="divisions-container">
+
+            <div class="divisions-grid">
+                <!-- Card 1 -->
+                <a class="division-card" href="#tactical">
+                    <div class="division-card-header">
+                        <h3 class="division-title">CKP TACTICAL</h3>
+                    </div>
+
+                    <div class="division-media division-media--tactical" aria-hidden="true"></div>
+
+                    <div class="division-cta division-cta--tactical">
+                        SECURITY &amp; LAW ENFORCEMENT
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a class="division-card" href="#care">
+                    <div class="division-card-header">
+                        <h3 class="division-title">CKP CARE</h3>
+                    </div>
+
+                    <div class="division-media division-media--care" aria-hidden="true"></div>
+
+                    <div class="division-cta division-cta--care">
+                        MEDICAL &amp; RESCUE
+                    </div>
+                </a>
+            </div>
+
+            <!-- Icon Row -->
+            <div class="divisions-features" aria-label="Vorteile">
+                <div class="feature-item">
+                    <span class="feature-icon" aria-hidden="true">✔</span>
+                    <span class="feature-text">GEPRÜFTE QUALITÄT</span>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon" aria-hidden="true">🚚</span>
+                    <span class="feature-text">SCHNELLER VERSAND</span>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon" aria-hidden="true">🎧</span>
+                    <span class="feature-text">EXPERTEN-BERATUNG</span>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon" aria-hidden="true">🔒</span>
+                    <span class="feature-text">SICHERE ZAHLUNG</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -43,8 +102,6 @@
         <h2 style="color: #1a1a1a;">Scroll nach unten um die Navigation zu sehen 👇</h2>
         <p style="color: #4a4a4a; margin-top: 1rem;">Die Navigation wird kleiner und bekommt einen Schatten wenn du scrollst.</p>
     </div>
-
-
 
 </body>
 </html>
