@@ -1,103 +1,93 @@
-/* Hero Section */
+/* Hero Section - Light Theme */
 
 .hero-section {
     position: relative;
-    min-height: 100vh;
-    display: flex;
+    min-height: 70vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
+    background: #ffffff;
 }
 
 .hero-background {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 60%;
     height: 100%;
     background: 
-        linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.85) 100%),
-        url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-    animation: backgroundShift 20s ease-in-out infinite;
+        linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 15%, rgba(255, 255, 255, 0.3) 40%, transparent 70%),
+        url('https://images.unsplash.com/photo-1551677645-e2a83d74f2ad?w=1200&h=800&fit=crop&q=80') center/cover no-repeat;
+    z-index: 1;
 }
 
-@keyframes backgroundShift {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(20px, 20px); }
-}
+/* When you add your image, replace the URL above with: url('../images/security_horizontal_haus.png') */
 
 .hero-content {
     position: relative;
     z-index: 10;
-    text-align: center;
-    max-width: 900px;
-    padding: 2rem;
+    text-align: left;
+    max-width: 600px;
+    padding: 4rem 2rem 4rem 4rem;
     animation: fadeInUp 1s ease-out;
 }
 
-.logo-container {
-    margin-bottom: 3rem;
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
     animation: fadeInUp 1s ease-out 0.2s backwards;
 }
 
-.main-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 6rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--text-primary);
-    text-shadow: 0 0 30px rgba(255, 69, 0, 0.3);
-    margin-bottom: 0.5rem;
-}
-
-.tagline {
-    font-size: 0.9rem;
-    letter-spacing: 0.3em;
-    color: var(--text-secondary);
-    font-weight: 300;
-}
-
-.hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    animation: fadeInUp 1s ease-out 0.4s backwards;
-}
-
 .highlight {
-    color: var(--tactical-accent);
+    color: #ff6600;
     position: relative;
+    display: block;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto 3rem;
-    font-weight: 300;
-    line-height: 1.8;
-    animation: fadeInUp 1s ease-out 0.6s backwards;
+    font-size: 1rem;
+    color: #4a4a4a;
+    max-width: 500px;
+    margin: 0 0 2.5rem;
+    font-weight: 400;
+    line-height: 1.7;
+    animation: fadeInUp 1s ease-out 0.4s backwards;
 }
 
 .cta-container {
-    animation: fadeInUp 1s ease-out 0.8s backwards;
+    display: flex;
+    gap: 1rem;
+    animation: fadeInUp 1s ease-out 0.6s backwards;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 1rem 3rem;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    padding: 1rem 2.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     text-decoration: none;
-    color: var(--text-primary);
-    background: var(--tactical-accent);
+    text-transform: uppercase;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+}
+
+.cta-button.primary {
+    background: #ff6600;
+    color: white;
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
 }
 
 .cta-button::before {
@@ -115,32 +105,79 @@
     left: 100%;
 }
 
-.cta-button:hover {
-    background: #ff5722;
+.cta-button.primary:hover {
+    background: #ff7700;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(255, 69, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 102, 0, 0.3);
+}
+
+.cta-button.secondary:hover {
+    background: #1a1a1a;
+    color: white;
+    transform: translateY(-2px);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .hero-section {
-        min-height: 80vh;
+        grid-template-columns: 1fr;
+        min-height: 60vh;
     }
     
-    .main-logo {
-        font-size: 4rem;
+    .hero-background {
+        width: 100%;
+        background: 
+            linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.9) 70%, #ffffff 100%),
+            url('https://images.unsplash.com/photo-1551677645-e2a83d74f2ad?w=1200&h=800&fit=crop&q=80') center/cover no-repeat;
+    }
+    
+    .hero-content {
+        padding: 3rem 2rem;
+        max-width: 100%;
     }
     
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
+    }
+    
+    .cta-container {
+        flex-direction: column;
+    }
+    
+    .cta-button {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 50vh;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
     }
     
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .cta-button {
         padding: 0.8rem 2rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem;
+    }
+    
+    .hero-subtitle {
         font-size: 0.9rem;
     }
 }
