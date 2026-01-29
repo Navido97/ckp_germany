@@ -1,120 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKP Germany - Professional Equipment</title>
-    <meta name="description" content="Professional protection and premium equipment for security, law enforcement, and emergency services.">
+    <title>CKP Germany - Professionelle Ausrüstung</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/sections/navigation.css">
     <link rel="stylesheet" href="../css/sections/hero.css">
     <link rel="stylesheet" href="../css/sections/divisions.css">
-    <link rel="stylesheet" href="../css/sections/footer.css">
-    <link rel="alternate" hreflang="de" href="../de/index.html">
-    <link rel="alternate" hreflang="en" href="index.html">
-    <link rel="alternate" hreflang="x-default" href="../de/index.html">
 </head>
 <body>
-    <nav class="shop-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <span class="logo-text">CKP</span>
-                <span class="logo-tagline">GERMANY GMBH</span>
-            </a>
-            <div class="nav-links">
-                <a href="#divisions">Products</a>
-                <a href="#contact">Contact</a>
-                <div class="language-switcher">
-                    <a href="../de/index.html" class="lang-btn">DE</a>
-                    <span class="lang-separator">|</span>
-                    <a href="index.html" class="lang-btn active">EN</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <div class="hero-section">
+
+    <!-- Header wird per JS geladen -->
+    <script src="../js/components/header.js"></script>
+
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="hero-content">
-            <h2 class="hero-title">Equipment for those who carry <span class="highlight">Responsibility</span></h2>
-            <p class="hero-subtitle">Professional protection and premium equipment for security, law enforcement, and emergency services.</p>
-            <div class="cta-container">
-                <a href="#divisions" class="cta-button primary">LEARN MORE</a>
-                <a href="#contact" class="cta-button secondary">GET IN TOUCH</a>
-            </div>
+            <h1 class="hero-title">
+                Ausrüstung für<br>
+                Menschen, die<br>
+                <span class="hero-highlight">Verantwortung</span> tragen
+            </h1>
+            <p class="hero-subtitle">
+                Professioneller Schutz und erstklassige Ausstattung für<br>
+                Sicherheit, Justizvollzug und Rettungsdienste.
+            </p>
+            <button class="hero-button">MEHR ERFAHREN</button>
         </div>
-        <div class="hero-background"></div>
-    </div>
-    <section id="divisions" class="divisions-section">
-        <div class="division-card tactical" onclick="window.location.href='tactical.html'">
-            <div class="division-image"><div class="division-overlay"></div></div>
-            <div class="division-content">
-                <h3 class="division-title">CKP TACTICAL</h3>
-                <p class="division-subtitle">SECURITY & LAW ENFORCEMENT</p>
-                <button class="division-button">SECURITY & LAW ENFORCEMENT</button>
-            </div>
-        </div>
-        <div class="division-card care" onclick="window.location.href='care.html'">
-            <div class="division-image"><div class="division-overlay"></div></div>
-            <div class="division-content">
-                <h3 class="division-title">CKP CARE</h3>
-                <p class="division-subtitle">MEDICAL & RESCUE</p>
-                <button class="division-button">MEDICAL & RESCUE</button>
-            </div>
-        </div>
-    </section>
-    
-    <section class="features-section">
-        <div class="features-grid">
-            <div class="feature-box">
-                <div class="feature-icon-box">🛡️</div>
-                <div class="feature-title">Certified Quality</div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon-box">🚚</div>
-                <div class="feature-title">Fast Shipping</div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon-box">👨‍💼</div>
-                <div class="feature-title">Expert Consultation</div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon-box">💳</div>
-                <div class="feature-title">Secure Payment</div>
-            </div>
+
+        <div class="hero-image">
+            <div class="hero-overlay"></div>
         </div>
     </section>
 
-    <section id="contact" class="bottom-cta">
-        <div class="bottom-cta-content">
-            <h3>Have Questions?</h3>
-            <p>Our expert team is available to help you find the perfect equipment solution for your specific requirements.</p>
-            <div class="bottom-cta-buttons">
-                <a href="mailto:info@ckp-germany.com" class="bottom-cta-button primary">GET IN TOUCH</a>
-                <a href="tel:+4942" class="bottom-cta-button secondary">CALL US</a>
+    <!-- Divisions Section -->
+    <section class="divisions" id="divisions">
+        <div class="divisions-container">
+
+            <div class="divisions-grid">
+                <!-- CKP Tactical -->
+                <a class="division-card" href="#tactical">
+                    <div class="division-card-header">
+                        <h3 class="division-title">CKP TACTICAL</h3>
+                    </div>
+
+                    <div class="division-media division-media--tactical" aria-hidden="true"></div>
+
+                    <div class="division-cta division-cta--tactical">
+                        SECURITY &amp; LAW ENFORCEMENT
+                    </div>
+                </a>
+
+                <!-- CKP Care -->
+                <a class="division-card" href="#care">
+                    <div class="division-card-header">
+                        <h3 class="division-title">CKP CARE</h3>
+                    </div>
+
+                    <div class="division-media division-media--care" aria-hidden="true"></div>
+
+                    <div class="division-cta division-cta--care">
+                        MEDICAL &amp; RESCUE
+                    </div>
+                </a>
             </div>
+
+            <!-- Features Row -->
+            <div class="divisions-features" aria-label="Vorteile">
+                <div class="feature-item">
+                    <span class="feature-icon" aria-hidden="true">✔</span>
+                    <span class="feature-text">GEPRÜFTE QUALITÄT</span>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon" aria-hidden="true">🚚</span>
+                    <span class="feature-text">SCHNELLER VERSAND</span>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon" aria-hidden="true">🎧</span>
+                    <span class="feature-text">EXPERTEN-BERATUNG</span>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon" aria-hidden="true">🔒</span>
+                    <span class="feature-text">SICHERE ZAHLUNG</span>
+                </div>
+            </div>
+
         </div>
     </section>
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>CKP Germany GmbH</h4>
-                <p>Expert equipment solutions for high-risk environments. Our security, justice, and emergency professionals demand the highest standards of protection.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="tactical.html">CKP Tactical</a></li>
-                    <li><a href="care.html">CKP Care</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2841464e47684b4358054f4d5a45494651064b4745">[email&#160;protected]</a></p>
-                <p>Phone: +49 (0) 421 XXX XXXX</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 CKP Ger
+
+    <!-- Footer wird per JS geladen -->
+    <script src="../js/components/footer.js"></script>
+
+</body>
+</html>
