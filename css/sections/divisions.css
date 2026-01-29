@@ -72,12 +72,12 @@
 
 /* Tactical image */
 .division-media--tactical{
-  background-image: url("/images/security_vertical.png");
+  background-image: url("../..//images/security_vertical.png");
 }
 
 /* Care image */
 .division-media--care{
-  background-image: url("/images/care_vertical.png");
+  background-image: url("../..//images/care_vertical.png");
   filter: none;
 }
 

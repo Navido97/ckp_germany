@@ -72,7 +72,7 @@
     width: 100%;              /* ✅ volle Breite */
     height: 100%;
     z-index: 1;               /* ✅ unter Text, über Background */
-    background-image: url("/images/security_horizontal_haus.png");
+    background-image: url("../..//images/security_horizontal_haus.png");
     background-position: right 15%;
     background-size: cover;
     background-repeat: no-repeat;
