@@ -200,7 +200,7 @@
                 <nav class="nav" id="nav">
                     <ul class="nav-links">
                         <li><a href="index.html" class="nav-link active">HOME</a></li>
-                        <li><a href="#about" class="nav-link">ABOUT US</a></li>
+                        <li><a href="about.html" class="nav-link">ABOUT US</a></li>
                         <li><a href="#contact" class="nav-link">CONTACT</a></li>
                     </ul>
 
@@ -236,14 +236,27 @@
             const currentPath = window.location.pathname;
             const isGerman = currentPath.includes('/de/');
             const isEnglish = currentPath.includes('/en/');
+            const currentPage = currentPath.split('/').pop() || 'index.html';
 
             // Update language button states
             langBtns.forEach(btn => {
                 const btnHref = btn.getAttribute('href');
                 btn.classList.remove('active');
                 
-                if ((btnHref.includes('/de/') && isGerman) || (btnHref.includes('/en/') && isEnglish)) {
+                if ((btnHref.includes('/en/') && isEnglish) || (btnHref.includes('index.html') && isEnglish && !btnHref.includes('/de/'))) {
                     btn.classList.add('active');
+                }
+            });
+
+            // Update navigation active states based on current page
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                link.classList.remove('active');
+                
+                if (linkHref === currentPage || 
+                    (currentPage === 'index.html' && linkHref === 'index.html') ||
+                    (currentPage === 'about.html' && linkHref === 'about.html')) {
+                    link.classList.add('active');
                 }
             });
 
