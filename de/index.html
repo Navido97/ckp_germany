@@ -3,101 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CKP Germany - Professionelle Ausrüstung</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>CKP Germany GmbH - Sicherheit & Schutz</title>
+    
+    <!-- CSS Files -->
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/sections/hero.css">
     <link rel="stylesheet" href="../css/sections/divisions.css">
+    <link rel="stylesheet" href="../css/sections/services.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <!-- Header wird per JS geladen -->
-    <script src="../js/components/header.js"></script>
-
+    <!-- Header Component -->
+    <div id="header-container"></div>
+    
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                Ausrüstung für<br>
-                Menschen, die<br>
-                <span class="hero-highlight">Verantwortung</span> tragen
-            </h1>
-            <p class="hero-subtitle">
-                Professioneller Schutz und erstklassige Ausstattung für<br>
-                Sicherheit, Justizvollzug und Rettungsdienste.
-            </p>
-            <button class="hero-button">MEHR ERFAHREN</button>
+        <!-- Background Image -->
+        <div class="hero-image">
+            <img src="../images/security_horizontal.png" alt="Sicherheitsteam" class="hero-img">
         </div>
 
-        <div class="hero-image">
-            <div class="hero-overlay"></div>
+        <!-- Animated Background Overlay -->
+        <div class="animated-background"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title">
+                    Ausrüstung für Menschen, die 
+                    <span class="highlight">Verantwortung</span> 
+                    tragen
+                </h1>
+                <p class="hero-subtitle">
+                    Professioneller Schutz und erstklassige Ausstattung für Sicherheit, Justizvollzug und Rettungsdienste.
+                </p>
+                <a href="#divisions" class="btn btn-primary">Mehr erfahren</a>
+            </div>
         </div>
     </section>
 
     <!-- Divisions Section -->
-    <section class="divisions" id="divisions">
-        <div class="divisions-container">
-
+    <section id="divisions" class="divisions">
+        <div class="container">
             <div class="divisions-grid">
-                <!-- CKP Tactical -->
-                <a class="division-card" href="#tactical">
-                    <div class="division-card-header">
-                        <h3 class="division-title">CKP TACTICAL</h3>
+                <div class="division-card" data-aos="fade-up">
+                    <div class="division-image">
+                        <img src="../images/security_vertical.png" alt="CKP Tactical Team">
                     </div>
-
-                    <div class="division-media division-media--tactical" aria-hidden="true"></div>
-
-                    <div class="division-cta division-cta--tactical">
-                        SECURITY &amp; LAW ENFORCEMENT
+                    <div class="division-content">
+                        <h2 class="division-title">CKP TACTICAL</h2>
+                        <p class="division-description">
+                            Hochwertige taktische Ausrüstung für Sicherheitskräfte und Spezialeinheiten. 
+                            Von Schutzwesten bis zur kompletten Einsatzausrüstung.
+                        </p>
+                        <a href="tactical.html" class="btn btn-secondary">Mehr erfahren</a>
                     </div>
-                </a>
-
-                <!-- CKP Care -->
-                <a class="division-card" href="#care">
-                    <div class="division-card-header">
-                        <h3 class="division-title">CKP CARE</h3>
-                    </div>
-
-                    <div class="division-media division-media--care" aria-hidden="true"></div>
-
-                    <div class="division-cta division-cta--care">
-                        MEDICAL &amp; RESCUE
-                    </div>
-                </a>
-            </div>
-
-            <!-- Features Row -->
-            <div class="divisions-features" aria-label="Vorteile">
-                <div class="feature-item">
-                    <span class="feature-icon" aria-hidden="true">✔</span>
-                    <span class="feature-text">GEPRÜFTE QUALITÄT</span>
                 </div>
 
-                <div class="feature-item">
-                    <span class="feature-icon" aria-hidden="true">🚚</span>
-                    <span class="feature-text">SCHNELLER VERSAND</span>
-                </div>
-
-                <div class="feature-item">
-                    <span class="feature-icon" aria-hidden="true">🎧</span>
-                    <span class="feature-text">EXPERTEN-BERATUNG</span>
-                </div>
-
-                <div class="feature-item">
-                    <span class="feature-icon" aria-hidden="true">🔒</span>
-                    <span class="feature-text">SICHERE ZAHLUNG</span>
+                <div class="division-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="division-image">
+                        <img src="../images/care_vertical.png" alt="CKP Care Team">
+                    </div>
+                    <div class="division-content">
+                        <h2 class="division-title">CKP CARE</h2>
+                        <p class="division-description">
+                            Medizinische Ausrüstung und Schutzkleidung für Rettungsdienste und 
+                            medizinisches Personal im Einsatz.
+                        </p>
+                        <a href="care.html" class="btn btn-secondary">Mehr erfahren</a>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Footer wird per JS geladen -->
-    <script src="../js/components/footer.js"></script>
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Unsere Leistungen</h2>
+            <div class="services-grid">
+                <div class="service-card" data-aos="zoom-in">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Höchste Qualität</h3>
+                    <p>Zertifizierte Produkte nach internationalen Standards</p>
+                </div>
 
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Schnelle Lieferung</h3>
+                    <p>Zuverlässige Logistik für zeitkritische Einsätze</p>
+                </div>
+
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Expertenberatung</h3>
+                    <p>Persönliche Beratung durch erfahrene Fachleute</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript Files - loaded at end for proper DOM access -->
+    <script defer src="../js/components/header.js"></script>
+    <script defer src="../js/components/footer.js"></script>
+    <script defer src="../js/main.js"></script>
 </body>
 </html>
