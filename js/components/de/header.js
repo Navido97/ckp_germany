@@ -201,7 +201,7 @@
                     <ul class="nav-links">
                         <li><a href="index.html" class="nav-link active">HOME</a></li>
                         <li><a href="about.html" class="nav-link">ÜBER UNS</a></li>
-                        <li><a href="#contact" class="nav-link">KONTAKT</a></li>
+                        <li><a href="contact.html" class="nav-link">KONTAKT</a></li>
                     </ul>
 
                     <div class="lang-switcher">
