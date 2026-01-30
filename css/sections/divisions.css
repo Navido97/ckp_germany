@@ -4,12 +4,12 @@
 
 .divisions {
     padding: 6rem 0;
-    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    background: transparent;
     position: relative;
     overflow: hidden;
 }
 
-/* Background Decoration */
+/* Animated Background Decoration */
 .divisions::before {
     content: '';
     position: absolute;
@@ -20,6 +20,7 @@
     background: radial-gradient(circle, rgba(255, 107, 53, 0.05) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
+    animation: floatDiagonal 15s ease-in-out infinite;
 }
 
 .divisions::after {
@@ -32,6 +33,16 @@
     background: radial-gradient(circle, rgba(255, 140, 66, 0.05) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
+    animation: floatDiagonal 20s ease-in-out infinite reverse;
+}
+
+@keyframes floatDiagonal {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(50px, 50px) scale(1.1);
+    }
 }
 
 /* Divisions Grid */
@@ -53,7 +64,7 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
     transform: translateY(30px);
-    height: 500px;
+    height: 600px;
 }
 
 .division-card[data-aos="fade-up"] {
@@ -216,7 +227,7 @@
     }
 
     .division-card {
-        height: 450px;
+        height: 550px;
     }
 
     .division-content {
@@ -244,7 +255,7 @@
 
     .division-card {
         border-radius: 16px;
-        height: 400px;
+        height: 500px;
     }
 
     .division-content {
