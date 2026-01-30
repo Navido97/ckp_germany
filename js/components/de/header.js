@@ -205,8 +205,8 @@
                     </ul>
 
                     <div class="lang-switcher">
-                        <a href="/de/index.html" class="lang-btn active">DE</a>
-                        <a href="/en/index.html" class="lang-btn">EN</a>
+                        <a href="de/index.html" class="lang-btn active">DE</a>
+                        <a href="../en/index.html" class="lang-btn">EN</a>
                     </div>
                 </nav>
 
