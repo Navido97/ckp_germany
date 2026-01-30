@@ -42,7 +42,7 @@
             }
 
             .logo-image {
-                width: 200px;
+                width: 120px;
                 height: auto;
                 object-fit: contain;
             }
@@ -200,13 +200,13 @@
                 <nav class="nav" id="nav">
                     <ul class="nav-links">
                         <li><a href="index.html" class="nav-link active">HOME</a></li>
-                        <li><a href="#about" class="nav-link">ÜBER UNS</a></li>
-                        <li><a href="#contact" class="nav-link">KONTAKT</a></li>
+                        <li><a href="#about" class="nav-link">ABOUT US</a></li>
+                        <li><a href="#contact" class="nav-link">CONTACT</a></li>
                     </ul>
 
                     <div class="lang-switcher">
-                        <a href="/de/" class="lang-btn active">DE</a>
-                        <a href="/en/" class="lang-btn">EN</a>
+                        <a href="/de/index.html" class="lang-btn">DE</a>
+                        <a href="/en/index.html" class="lang-btn active">EN</a>
                     </div>
                 </nav>
 
@@ -230,6 +230,22 @@
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const nav = document.getElementById('nav');
             const navLinks = document.querySelectorAll('.nav-link');
+            const langBtns = document.querySelectorAll('.lang-btn');
+
+            // Detect current language from URL
+            const currentPath = window.location.pathname;
+            const isGerman = currentPath.includes('/de/');
+            const isEnglish = currentPath.includes('/en/');
+
+            // Update language button states
+            langBtns.forEach(btn => {
+                const btnHref = btn.getAttribute('href');
+                btn.classList.remove('active');
+                
+                if ((btnHref.includes('/de/') && isGerman) || (btnHref.includes('/en/') && isEnglish)) {
+                    btn.classList.add('active');
+                }
+            });
 
             // Scroll effect
             let lastScroll = 0;
