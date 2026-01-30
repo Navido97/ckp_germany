@@ -42,7 +42,7 @@
             }
 
             .logo-image {
-                width: 120px;
+                width: 150px;
                 height: auto;
                 object-fit: contain;
             }
