@@ -1,0 +1,180 @@
+{
+  "categories": [
+    {
+      "id": "body-armor",
+      "name": {
+        "de": "Körperschutz",
+        "en": "Body Armor"
+      },
+      "count": 32
+    },
+    {
+      "id": "tactical-apparel",
+      "name": {
+        "de": "Taktische Bekleidung",
+        "en": "Tactical Apparel"
+      },
+      "count": 45
+    },
+    {
+      "id": "optical-systems",
+      "name": {
+        "de": "Optische Systeme",
+        "en": "Optical Systems"
+      },
+      "count": 12
+    },
+    {
+      "id": "communication",
+      "name": {
+        "de": "Kommunikation",
+        "en": "Communication"
+      },
+      "count": 8
+    },
+    {
+      "id": "training-gear",
+      "name": {
+        "de": "Trainingsausrüstung",
+        "en": "Training Gear"
+      },
+      "count": 21
+    }
+  ],
+  "products": [
+    {
+      "id": "defender-x-gen3",
+      "sku": "PLATE-CARRIER-001",
+      "name": {
+        "de": "Defender-X Gen 3",
+        "en": "Defender-X Gen 3"
+      },
+      "category": "body-armor",
+      "tags": {
+        "de": ["Plattenträger", "SK4 Zertifiziert"],
+        "en": ["Plate Carrier", "SK4 Certified"]
+      },
+      "description": {
+        "de": "Der Gen 3 bietet unübertroffene Modularität für professionelle Einsätze. Mit verstärkten lasergeschnittenen MOLLE-Geweben, Schnellverschlüssen und integriertem Hydrationssystem. Entwickelt für 12+ Stunden Tragbarkeit in extremen Umgebungen.",
+        "en": "The Gen 3 offers unmatched modularity for professional operations. Featuring reinforced laser-cut MOLLE webbing, quick-release buckles, and integrated hydration routing. Designed for 12+ hour wearability in extreme environments."
+      },
+      "features": {
+        "de": [
+          "Ballistische Platten kompatibel",
+          "1000D Cordura® Nylon",
+          "Verstellbares Kummerbund",
+          "Schnellverschluss-System"
+        ],
+        "en": [
+          "Ballistic Plate Compatible",
+          "1000D Cordura® Nylon",
+          "Adjustable Cummerbund",
+          "Quick-Release System"
+        ]
+      },
+      "colors": ["Carbon Black", "Coyote", "Ranger Green"],
+      "image": "defender-x-gen3.jpg",
+      "bestseller": false
+    },
+    {
+      "id": "varan-elite-suit",
+      "sku": "TACTICAL-APPAREL-002",
+      "name": {
+        "de": "Varan-Elite Kampfanzug",
+        "en": "Varan-Elite Combat Suit"
+      },
+      "category": "tactical-apparel",
+      "tags": {
+        "de": ["Taktische Bekleidung", "Bestseller"],
+        "en": ["Tactical Apparel", "Bestseller"]
+      },
+      "description": {
+        "de": "Hochleistungs-Kampfanzug für alle Geländearten. Ripstop-Gewebe mit verstärkten Knie- und Ellbogenbereichen. Integrierte Magazine-Taschen und verstellbare Ärmelbündchen.",
+        "en": "High-performance combat suit for all terrain types. Ripstop fabric with reinforced knee and elbow areas. Integrated magazine pouches and adjustable cuffs."
+      },
+      "features": {
+        "de": [
+          "Ripstop-Material",
+          "Verstärkte Zonen",
+          "Integrierte Taschen",
+          "Atmungsaktiv"
+        ],
+        "en": [
+          "Ripstop Material",
+          "Reinforced Zones",
+          "Integrated Pockets",
+          "Breathable"
+        ]
+      },
+      "colors": ["Multi-Terrain Camo"],
+      "image": "varan-elite-suit.jpg",
+      "bestseller": true
+    },
+    {
+      "id": "sentinel-ops-helmet",
+      "sku": "HEAD-PROTECTION-003",
+      "name": {
+        "de": "Sentinel Ops Helm",
+        "en": "Sentinel Ops Helmet"
+      },
+      "category": "body-armor",
+      "tags": {
+        "de": ["Kopfschutz", "Level II-A Ballistisch"],
+        "en": ["Head Protection", "Level II-A Ballistic"]
+      },
+      "description": {
+        "de": "Fortschrittlicher ballistischer Helm mit integrierten Schienensystemen für NVG und Kommunikationsgeräte. Komfortables Polstersystem für Langzeiteinsätze.",
+        "en": "Advanced ballistic helmet with integrated rail systems for NVG and communication devices. Comfortable padding system for extended operations."
+      },
+      "features": {
+        "de": [
+          "NIJ Level IIIA",
+          "Integrierte Schienen",
+          "Komfort-Polsterung",
+          "NVG-kompatibel"
+        ],
+        "en": [
+          "NIJ Level IIIA",
+          "Integrated Rails",
+          "Comfort Padding",
+          "NVG Compatible"
+        ]
+      },
+      "colors": ["Black", "Tan", "OD Green"],
+      "image": "sentinel-helmet.jpg",
+      "bestseller": false
+    },
+    {
+      "id": "tactical-vest-gen4",
+      "sku": "SPEC-VEST-004",
+      "name": {
+        "de": "Taktische Weste Gen 4",
+        "en": "Tactical Vest Gen 4"
+      },
+      "category": "body-armor",
+      "tags": {
+        "de": ["Modulare Weste"],
+        "en": ["Modular Vest"]
+      },
+      "description": {
+        "de": "Die Gen 4 Serie bietet unvergleichliche Modularität für professionelle Operationen. Mit verstärkten lasergeschnittenen MOLLE-Geweben, Schnellverschlüssen und integriertem Hydrationssystem.",
+        "en": "The Gen 4 series offers unparalleled modularity for professional operations. Featuring reinforced laser-cut MOLLE webbing, quick-release buckles, and integrated hydration routing."
+      },
+      "features": {
+        "de": [
+          "Ballistische Platten kompatibel",
+          "1000D Cordura® Nylon",
+          "Verstellbares Kummerbund"
+        ],
+        "en": [
+          "Ballistic Plate Compatible",
+          "1000D Cordura® Nylon",
+          "Adjustable Cummerbund"
+        ]
+      },
+      "colors": ["Black", "Tan"],
+      "image": "tactical-vest-gen4.jpg",
+      "bestseller": false
+    }
+  ]
+}
