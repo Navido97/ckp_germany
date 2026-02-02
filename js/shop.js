@@ -44,6 +44,38 @@
 
     async function loadProducts() {
         try {
+            // First, try to load from Google Sheets
+            if (window.loadSheetProducts) {
+                const sheetsProducts = await window.loadSheetProducts();
+                if (sheetsProducts && sheetsProducts.length > 0) {
+                    console.log('Using Google Sheets products');
+                    productsData = {
+                        divisions: {
+                            tactical: {
+                                name: { de: 'CKP Tactical', en: 'CKP Tactical' },
+                                categories: [
+                                    { id: 'body-armor', name: { de: 'Körperschutz', en: 'Body Armor' } },
+                                    { id: 'tactical-apparel', name: { de: 'Taktische Bekleidung', en: 'Tactical Apparel' } },
+                                    { id: 'helmets', name: { de: 'Helme', en: 'Helmets' } },
+                                    { id: 'plate-carriers', name: { de: 'Plattenträger', en: 'Plate Carriers' } },
+                                    { id: 'gear', name: { de: 'Ausrüstung', en: 'Gear' } }
+                                ]
+                            },
+                            care: {
+                                name: { de: 'CKP Care', en: 'CKP Care' },
+                                categories: [
+                                    { id: 'protective-clothing', name: { de: 'Schutzkleidung', en: 'Protective Clothing' } },
+                                    { id: 'medical-equipment', name: { de: 'Medizinische Ausrüstung', en: 'Medical Equipment' } }
+                                ]
+                            }
+                        },
+                        products: sheetsProducts
+                    };
+                    return;
+                }
+            }
+            
+            // Fallback to JSON file
             const response = await fetch('../data/products.json');
             productsData = await response.json();
         } catch (error) {
@@ -132,10 +164,36 @@
             const tagText = product.tags[currentLanguage][0] || '';
             const specs = product.specs[currentLanguage].join(' / ');
             
+            // Get images array (fallback to single imageURL if no images array)
+            const images = product.images || [product.imageURL];
+            const hasMultipleImages = images.length > 1;
+            
+            // Generate image gallery HTML
+            const imageGalleryHTML = images.map((img, idx) => 
+                `<img src="${img}" alt="${product.name[currentLanguage]}" class="product-image ${idx === 0 ? 'active' : ''}" data-index="${idx}">`
+            ).join('');
+            
             return `
                 <div class="product-card" data-product-id="${product.id}">
                     <div class="product-image-wrapper">
-                        <img src="${product.imageURL}" alt="${product.name[currentLanguage]}" class="product-image">
+                        <div class="product-images-container">
+                            ${imageGalleryHTML}
+                        </div>
+                        ${hasMultipleImages ? `
+                            <button class="image-nav image-nav-prev" data-direction="prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </button>
+                            <button class="image-nav image-nav-next" data-direction="next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                            <div class="image-dots">
+                                ${images.map((_, idx) => `<span class="dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>`).join('')}
+                            </div>
+                        ` : ''}
                         ${hasBadge ? `<div class="product-badge">${badgeText}</div>` : ''}
                     </div>
                     <div class="product-content">
@@ -154,12 +212,55 @@
             `;
         }).join('');
 
-        // Add click handlers to product cards
+        // Add click handlers to product cards and image navigation
         document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const productId = this.getAttribute('data-product-id');
+            // Product click (open inquiry)
+            const productContent = card.querySelector('.product-content');
+            const imageWrapper = card.querySelector('.product-image-wrapper');
+            
+            productContent.addEventListener('click', function() {
+                const productId = card.getAttribute('data-product-id');
                 openProductInquiry(productId);
             });
+            
+            // Image navigation
+            const prevBtn = card.querySelector('.image-nav-prev');
+            const nextBtn = card.querySelector('.image-nav-next');
+            const images = card.querySelectorAll('.product-image');
+            const dots = card.querySelectorAll('.dot');
+            let currentImageIndex = 0;
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                    updateImage();
+                });
+                
+                nextBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    updateImage();
+                });
+                
+                // Dot navigation
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        currentImageIndex = index;
+                        updateImage();
+                    });
+                });
+            }
+            
+            function updateImage() {
+                images.forEach((img, idx) => {
+                    img.classList.toggle('active', idx === currentImageIndex);
+                });
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === currentImageIndex);
+                });
+            }
         });
     }
 

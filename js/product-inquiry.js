@@ -50,7 +50,20 @@
                             </button>
 
                             <div class="product-image-large">
-                                <img id="inquiry-product-image" src="" alt="">
+                                <div class="inquiry-images-container">
+                                    <img id="inquiry-product-image" src="" alt="" class="inquiry-image active" data-index="0">
+                                </div>
+                                <button class="inquiry-nav inquiry-nav-prev" style="display: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="inquiry-nav inquiry-nav-next" style="display: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+                                <div class="inquiry-dots" style="display: none;"></div>
                             </div>
 
                             <div class="product-details">
@@ -249,12 +262,89 @@
                     border-radius: 12px;
                     overflow: hidden;
                     margin-bottom: 2rem;
+                    position: relative;
                 }
 
-                .product-image-large img {
+                .inquiry-images-container {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                .inquiry-image {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    opacity: 0;
+                    transition: opacity 0.5s ease;
+                }
+
+                .inquiry-image.active {
+                    opacity: 1;
+                }
+
+                .inquiry-nav {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    z-index: 10;
+                    background: rgba(0, 0, 0, 0.6);
+                    border: none;
+                    color: white;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                .inquiry-nav:hover {
+                    background: var(--primary-color);
+                    transform: translateY(-50%) scale(1.1);
+                }
+
+                .inquiry-nav-prev {
+                    left: 15px;
+                }
+
+                .inquiry-nav-next {
+                    right: 15px;
+                }
+
+                .inquiry-dots {
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 10px;
+                    z-index: 10;
+                }
+
+                .inquiry-dot {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.5);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                .inquiry-dot:hover {
+                    background: rgba(255, 255, 255, 0.8);
+                    transform: scale(1.2);
+                }
+
+                .inquiry-dot.active {
+                    background: var(--primary-color);
+                    width: 28px;
+                    border-radius: 5px;
                 }
 
                 .product-details h2 {
@@ -547,8 +637,76 @@
     function updateProductInfo() {
         if (!currentProduct) return;
 
-        document.getElementById('inquiry-product-image').src = currentProduct.imageURL;
-        document.getElementById('inquiry-product-image').alt = currentProduct.name[currentLanguage];
+        // Get all images
+        const images = currentProduct.images || [currentProduct.imageURL];
+        const hasMultipleImages = images.length > 1;
+
+        // Update image container
+        const imageContainer = document.querySelector('.inquiry-images-container');
+        const prevBtn = document.querySelector('.inquiry-nav-prev');
+        const nextBtn = document.querySelector('.inquiry-nav-next');
+        const dotsContainer = document.querySelector('.inquiry-dots');
+
+        // Clear and add all images
+        imageContainer.innerHTML = images.map((img, idx) => 
+            `<img src="${img}" alt="${currentProduct.name[currentLanguage]}" class="inquiry-image ${idx === 0 ? 'active' : ''}" data-index="${idx}">`
+        ).join('');
+
+        // Show/hide navigation if multiple images
+        if (hasMultipleImages) {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+            dotsContainer.style.display = 'flex';
+
+            // Create dots
+            dotsContainer.innerHTML = images.map((_, idx) => 
+                `<span class="inquiry-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>`
+            ).join('');
+
+            // Setup navigation
+            let currentImageIndex = 0;
+            const allImages = imageContainer.querySelectorAll('.inquiry-image');
+            const dots = dotsContainer.querySelectorAll('.inquiry-dot');
+
+            function updateImage(index) {
+                currentImageIndex = index;
+                allImages.forEach((img, idx) => {
+                    img.classList.toggle('active', idx === currentImageIndex);
+                });
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === currentImageIndex);
+                });
+            }
+
+            // Previous button
+            prevBtn.onclick = function(e) {
+                e.stopPropagation();
+                const newIndex = (currentImageIndex - 1 + images.length) % images.length;
+                updateImage(newIndex);
+            };
+
+            // Next button
+            nextBtn.onclick = function(e) {
+                e.stopPropagation();
+                const newIndex = (currentImageIndex + 1) % images.length;
+                updateImage(newIndex);
+            };
+
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.onclick = function(e) {
+                    e.stopPropagation();
+                    updateImage(index);
+                };
+            });
+
+        } else {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            dotsContainer.style.display = 'none';
+        }
+
+        // Update product details
         document.getElementById('inquiry-product-name').textContent = currentProduct.name[currentLanguage];
         document.getElementById('inquiry-product-sku').textContent = `SKU: ${currentProduct.sku}`;
         document.getElementById('inquiry-product-description').textContent = currentProduct.description[currentLanguage];

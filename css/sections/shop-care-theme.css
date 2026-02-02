@@ -101,6 +101,14 @@ body.care-shop .product-image-wrapper {
     background: #f8f9fa;
 }
 
+body.care-shop .image-nav:hover {
+    background: #4a90e2;
+}
+
+body.care-shop .dot.active {
+    background: #4a90e2;
+}
+
 body.care-shop .product-badge {
     background: #4a90e2;
 }
@@ -162,6 +170,14 @@ body.care-shop .inquiry-content {
 
 body.care-shop .inquiry-product {
     background: rgba(74, 144, 226, 0.05);
+}
+
+body.care-shop .inquiry-nav:hover {
+    background: #4a90e2;
+}
+
+body.care-shop .inquiry-dot.active {
+    background: #4a90e2;
 }
 
 body.care-shop .back-to-catalog {
