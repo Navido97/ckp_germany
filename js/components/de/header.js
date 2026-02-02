@@ -98,6 +98,86 @@
                 width: 100%;
             }
 
+            /* Dropdown */
+            .nav-dropdown {
+                position: relative;
+            }
+
+            .nav-dropdown > .nav-link::after {
+                display: none;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 50%;
+                transform: translateX(-50%);
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+                padding: 0.5rem;
+                min-width: 200px;
+                list-style: none;
+                margin: 0;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateX(-50%) translateY(-10px);
+                transition: all 0.3s ease;
+                z-index: 100;
+            }
+
+            .nav-dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown-menu li {
+                margin: 0;
+            }
+
+            .dropdown-menu a {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.875rem 1rem;
+                color: #333;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.9rem;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .dropdown-menu a:hover {
+                background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+                color: white;
+                transform: translateX(5px);
+            }
+
+            .dropdown-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+            }
+
+            .dropdown-menu a:hover .dropdown-icon {
+                transform: scale(1.1);
+            }
+
+            .tactical-icon {
+                background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            }
+
+            .care-icon {
+                background: linear-gradient(135deg, #e8f4ff 0%, #d4e9ff 100%);
+            }
+
             .lang-switcher {
                 display: flex;
                 gap: 0.5rem;
@@ -114,6 +194,7 @@
                 cursor: pointer;
                 transition: all 0.3s ease;
                 border-radius: 4px;
+                text-decoration: none;
             }
 
             .lang-btn:hover {
@@ -162,6 +243,8 @@
                     opacity: 0;
                     transition: all 0.3s ease;
                     pointer-events: none;
+                    max-height: calc(100vh - 70px);
+                    overflow-y: auto;
                 }
 
                 .nav.active {
@@ -172,13 +255,38 @@
 
                 .nav-links {
                     flex-direction: column;
-                    gap: 1.5rem;
+                    gap: 0;
+                    width: 100%;
+                }
+
+                .nav-links > li {
                     width: 100%;
                 }
 
                 .nav-link {
                     font-size: 1.1rem;
-                    padding: 0.5rem 0;
+                    padding: 1rem 0;
+                    display: block;
+                    width: 100%;
+                }
+
+                .nav-dropdown {
+                    width: 100%;
+                }
+
+                .dropdown-menu {
+                    position: static;
+                    transform: none;
+                    opacity: 1;
+                    visibility: visible;
+                    box-shadow: none;
+                    background: #f8f9fa;
+                    margin-top: 0.5rem;
+                    padding: 0.5rem;
+                }
+
+                .dropdown-menu a {
+                    padding: 0.75rem 1rem;
                 }
 
                 .mobile-menu-btn {
@@ -186,7 +294,7 @@
                 }
 
                 .lang-switcher {
-                    margin-top: 1rem;
+                    margin-top: 1.5rem;
                 }
             }
         </style>
@@ -199,8 +307,25 @@
 
                 <nav class="nav" id="nav">
                     <ul class="nav-links">
-                        <li><a href="index.html" class="nav-link active">HOME</a></li>
+                        <li><a href="index.html" class="nav-link">HOME</a></li>
                         <li><a href="about.html" class="nav-link">ÜBER UNS</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link">SHOP</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="tactical.html">
+                                        <span class="dropdown-icon tactical-icon">🛡️</span>
+                                        <span>CKP Tactical</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="care.html">
+                                        <span class="dropdown-icon care-icon">⚕️</span>
+                                        <span>CKP Care</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li><a href="contact.html" class="nav-link">KONTAKT</a></li>
                     </ul>
 
@@ -230,38 +355,27 @@
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const nav = document.getElementById('nav');
             const navLinks = document.querySelectorAll('.nav-link');
-            const langBtns = document.querySelectorAll('.lang-btn');
 
-            // Detect current language from URL
+            // Detect current page
             const currentPath = window.location.pathname;
-            const isGerman = currentPath.includes('/de/');
-            const isEnglish = currentPath.includes('/en/');
             const currentPage = currentPath.split('/').pop() || 'index.html';
 
-            // Update language button states
-            langBtns.forEach(btn => {
-                const btnHref = btn.getAttribute('href');
-                btn.classList.remove('active');
-                
-                if ((btnHref.includes('/de/') && isGerman) || (btnHref.includes('index.html') && isGerman && !btnHref.includes('/en/'))) {
-                    btn.classList.add('active');
-                }
-            });
-
-            // Update navigation active states based on current page
+            // Update navigation active states
             navLinks.forEach(link => {
                 const linkHref = link.getAttribute('href');
                 link.classList.remove('active');
                 
                 if (linkHref === currentPage || 
                     (currentPage === 'index.html' && linkHref === 'index.html') ||
-                    (currentPage === 'about.html' && linkHref === 'about.html')) {
+                    (currentPage === 'about.html' && linkHref === 'about.html') ||
+                    (currentPage === 'contact.html' && linkHref === 'contact.html') ||
+                    (currentPage === 'tactical.html' && link.textContent === 'SHOP') ||
+                    (currentPage === 'care.html' && link.textContent === 'SHOP')) {
                     link.classList.add('active');
                 }
             });
 
             // Scroll effect
-            let lastScroll = 0;
             window.addEventListener('scroll', function() {
                 const currentScroll = window.pageYOffset;
                 
@@ -270,8 +384,6 @@
                 } else {
                     header.classList.remove('scrolled');
                 }
-
-                lastScroll = currentScroll;
             });
 
             // Mobile menu toggle
@@ -282,28 +394,29 @@
             }
 
             // Close mobile menu when clicking nav link
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    nav.classList.remove('active');
-                    
-                    // Update active state
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
+            document.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (!this.parentElement.classList.contains('nav-dropdown')) {
+                        nav.classList.remove('active');
+                    }
                 });
             });
 
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerHeight = header.offsetHeight;
-                        const targetPosition = target.offsetTop - headerHeight;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const headerHeight = header.offsetHeight;
+                            const targetPosition = target.offsetTop - headerHeight;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
                     }
                 });
             });

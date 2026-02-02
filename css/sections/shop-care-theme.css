@@ -1,0 +1,244 @@
+/* ===================================
+   Care Shop - Light Theme Override
+   =================================== */
+
+/* Care specific light theme */
+body.care-shop {
+    background: #f8f9fa;
+}
+
+body.care-shop .shop-section {
+    background: #f8f9fa;
+}
+
+body.care-shop .shop-sidebar {
+    background: white;
+}
+
+body.care-shop .sidebar-section {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+}
+
+body.care-shop .sidebar-title {
+    color: #333;
+}
+
+body.care-shop .category-item {
+    color: #555;
+}
+
+body.care-shop .category-item:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+body.care-shop .category-item.active {
+    background: linear-gradient(135deg, #4a90e2 0%, #5ba3f5 100%);
+    color: white;
+}
+
+body.care-shop .filter-checkbox {
+    color: #555;
+}
+
+body.care-shop .filter-checkbox:hover {
+    color: #333;
+}
+
+body.care-shop .sidebar-cta {
+    background: linear-gradient(135deg, #e8f4ff 0%, #d4e9ff 100%);
+    border: 1px solid #b8d9ff;
+}
+
+body.care-shop .cta-icon {
+    background: #4a90e2;
+}
+
+body.care-shop .sidebar-cta h4 {
+    color: #333;
+}
+
+body.care-shop .sidebar-cta p {
+    color: #666;
+}
+
+/* Shop Main - Light */
+body.care-shop .shop-header {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+body.care-shop .shop-info h2 {
+    color: #333;
+}
+
+body.care-shop .shop-info p {
+    color: #666;
+}
+
+body.care-shop .sort-select {
+    background: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+body.care-shop .sort-select:hover,
+body.care-shop .sort-select:focus {
+    border-color: #4a90e2;
+}
+
+/* Product Cards - Light */
+body.care-shop .product-card {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+body.care-shop .product-card:hover {
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
+}
+
+body.care-shop .product-image-wrapper {
+    background: #f8f9fa;
+}
+
+body.care-shop .product-badge {
+    background: #4a90e2;
+}
+
+body.care-shop .product-category {
+    color: #4a90e2;
+}
+
+body.care-shop .product-name {
+    color: #333;
+}
+
+body.care-shop .product-colors {
+    color: #666;
+}
+
+body.care-shop .product-cta {
+    background: #f0f0f0;
+    color: #333;
+}
+
+body.care-shop .product-card:hover .product-cta {
+    background: #4a90e2;
+    color: white;
+}
+
+/* Pagination - Light */
+body.care-shop .pagination-btn {
+    background: white;
+    border: 1px solid #e0e0e0;
+    color: #666;
+}
+
+body.care-shop .pagination-btn:hover:not(:disabled) {
+    background: #f8f9fa;
+    border-color: #4a90e2;
+    color: #333;
+}
+
+body.care-shop .pagination-btn.active {
+    background: #4a90e2;
+    border-color: #4a90e2;
+    color: white;
+}
+
+/* Hero Badge - Care */
+body.care-shop .hero-badge {
+    background: #4a90e2;
+}
+
+body.care-shop .highlight {
+    color: #4a90e2;
+}
+
+/* Product Inquiry Popup - Care Theme */
+body.care-shop .inquiry-content {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e8f4ff 100%);
+}
+
+body.care-shop .inquiry-product {
+    background: rgba(74, 144, 226, 0.05);
+}
+
+body.care-shop .back-to-catalog {
+    color: #4a90e2;
+}
+
+body.care-shop .product-details h2 {
+    color: #333;
+}
+
+body.care-shop .product-sku {
+    color: #666;
+}
+
+body.care-shop .product-description {
+    color: #555;
+}
+
+body.care-shop .product-features h4 {
+    color: #4a90e2;
+}
+
+body.care-shop .product-features li {
+    color: #555;
+}
+
+body.care-shop .product-features li::before {
+    background: #4a90e2;
+}
+
+body.care-shop .inquiry-form-wrapper h2 {
+    color: #333;
+}
+
+body.care-shop .inquiry-form-wrapper > p {
+    color: #666;
+}
+
+body.care-shop .form-group label {
+    color: #555;
+}
+
+body.care-shop .form-group input,
+body.care-shop .form-group textarea {
+    background: white;
+    border: 1px solid #e0e0e0;
+    color: #333;
+}
+
+body.care-shop .form-group input:focus,
+body.care-shop .form-group textarea:focus {
+    border-color: #4a90e2;
+    background: white;
+}
+
+body.care-shop .btn-cancel {
+    border: 1px solid #e0e0e0;
+    color: #666;
+}
+
+body.care-shop .btn-cancel:hover {
+    border-color: #999;
+    color: #333;
+}
+
+body.care-shop .btn-submit {
+    background: linear-gradient(135deg, #4a90e2 0%, #5ba3f5 100%);
+}
+
+body.care-shop .btn-submit:hover {
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+}
+
+body.care-shop .security-item {
+    color: #999;
+}
+
+body.care-shop .security-item svg {
+    color: #4a90e2;
+}

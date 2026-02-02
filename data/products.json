@@ -1,179 +1,310 @@
 {
-  "categories": [
-    {
-      "id": "body-armor",
+  "divisions": {
+    "tactical": {
       "name": {
-        "de": "Körperschutz",
-        "en": "Body Armor"
+        "de": "CKP Tactical",
+        "en": "CKP Tactical"
       },
-      "count": 32
+      "description": {
+        "de": "Hochwertige taktische Ausrüstung für Sicherheitskräfte und Spezialeinheiten. Von Schutzwesten bis zur kompletten Einsatzausrüstung.",
+        "en": "High-quality tactical equipment for security forces and special units. From protective vests to complete deployment equipment."
+      },
+      "categories": [
+        {
+          "id": "body-armor",
+          "name": { "de": "Körperschutz", "en": "Body Armor" }
+        },
+        {
+          "id": "tactical-apparel",
+          "name": { "de": "Taktische Bekleidung", "en": "Tactical Apparel" }
+        },
+        {
+          "id": "helmets",
+          "name": { "de": "Helme", "en": "Helmets" }
+        },
+        {
+          "id": "plate-carriers",
+          "name": { "de": "Plattenträger", "en": "Plate Carriers" }
+        },
+        {
+          "id": "gear",
+          "name": { "de": "Ausrüstung", "en": "Gear" }
+        }
+      ]
     },
-    {
-      "id": "tactical-apparel",
+    "care": {
       "name": {
-        "de": "Taktische Bekleidung",
-        "en": "Tactical Apparel"
+        "de": "CKP Care",
+        "en": "CKP Care"
       },
-      "count": 45
-    },
-    {
-      "id": "optical-systems",
-      "name": {
-        "de": "Optische Systeme",
-        "en": "Optical Systems"
+      "description": {
+        "de": "Medizinische Ausrüstung und Schutzkleidung für Rettungsdienste und medizinisches Personal im Einsatz.",
+        "en": "Medical equipment and protective clothing for emergency services and medical personnel in the field."
       },
-      "count": 12
-    },
-    {
-      "id": "communication",
-      "name": {
-        "de": "Kommunikation",
-        "en": "Communication"
-      },
-      "count": 8
-    },
-    {
-      "id": "training-gear",
-      "name": {
-        "de": "Trainingsausrüstung",
-        "en": "Training Gear"
-      },
-      "count": 21
+      "categories": [
+        {
+          "id": "protective-clothing",
+          "name": { "de": "Schutzkleidung", "en": "Protective Clothing" }
+        },
+        {
+          "id": "medical-equipment",
+          "name": { "de": "Medizinische Ausrüstung", "en": "Medical Equipment" }
+        },
+        {
+          "id": "respiratory-protection",
+          "name": { "de": "Atemschutz", "en": "Respiratory Protection" }
+        }
+      ]
     }
-  ],
+  },
   "products": [
     {
       "id": "defender-x-gen3",
-      "sku": "PLATE-CARRIER-001",
+      "sku": "DEF-X-G3",
+      "division": "tactical",
       "name": {
         "de": "Defender-X Gen 3",
         "en": "Defender-X Gen 3"
       },
       "category": "body-armor",
       "tags": {
-        "de": ["Plattenträger", "SK4 Zertifiziert"],
-        "en": ["Plate Carrier", "SK4 Certified"]
+        "de": ["Körperschutz"],
+        "en": ["Body Armor"]
+      },
+      "badge": {
+        "de": "BESTSELLER",
+        "en": "BESTSELLER"
       },
       "description": {
-        "de": "Der Gen 3 bietet unübertroffene Modularität für professionelle Einsätze. Mit verstärkten lasergeschnittenen MOLLE-Geweben, Schnellverschlüssen und integriertem Hydrationssystem. Entwickelt für 12+ Stunden Tragbarkeit in extremen Umgebungen.",
-        "en": "The Gen 3 offers unmatched modularity for professional operations. Featuring reinforced laser-cut MOLLE webbing, quick-release buckles, and integrated hydration routing. Designed for 12+ hour wearability in extreme environments."
+        "de": "Verdeckter ballistischer Schutz für professionelle Einsätze. Leicht, diskret und höchster Schutzstandard.",
+        "en": "Covert ballistic protection for professional operations. Lightweight, discreet and highest protection standard."
+      },
+      "specs": {
+        "de": ["SK1", "Verdeckt", "Multi-Hit Fähig"],
+        "en": ["SK1", "Covert", "Multi-Hit Capable"]
       },
       "features": {
         "de": [
-          "Ballistische Platten kompatibel",
-          "1000D Cordura® Nylon",
-          "Verstellbares Kummerbund",
-          "Schnellverschluss-System"
+          "Ballistischer Schutz SK1",
+          "Verdecktes Design",
+          "Multi-Hit zertifiziert",
+          "Atmungsaktives Material"
         ],
         "en": [
-          "Ballistic Plate Compatible",
-          "1000D Cordura® Nylon",
-          "Adjustable Cummerbund",
-          "Quick-Release System"
+          "Ballistic Protection SK1",
+          "Covert Design",
+          "Multi-Hit Certified",
+          "Breathable Material"
         ]
       },
-      "colors": ["Carbon Black", "Coyote", "Ranger Green"],
-      "image": "defender-x-gen3.jpg",
-      "bestseller": false
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/1a1a1a/ff6b35?text=Defender-X+Gen+3",
+      "bestseller": true
     },
     {
       "id": "varan-elite-suit",
-      "sku": "TACTICAL-APPAREL-002",
+      "sku": "VAR-ELI-001",
+      "division": "tactical",
       "name": {
         "de": "Varan-Elite Kampfanzug",
         "en": "Varan-Elite Combat Suit"
       },
       "category": "tactical-apparel",
       "tags": {
-        "de": ["Taktische Bekleidung", "Bestseller"],
-        "en": ["Tactical Apparel", "Bestseller"]
+        "de": ["Taktische Bekleidung"],
+        "en": ["Tactical Apparel"]
+      },
+      "badge": {
+        "de": "NEU",
+        "en": "NEW ARRIVALS"
       },
       "description": {
-        "de": "Hochleistungs-Kampfanzug für alle Geländearten. Ripstop-Gewebe mit verstärkten Knie- und Ellbogenbereichen. Integrierte Magazine-Taschen und verstellbare Ärmelbündchen.",
-        "en": "High-performance combat suit for all terrain types. Ripstop fabric with reinforced knee and elbow areas. Integrated magazine pouches and adjustable cuffs."
+        "de": "Multi-Terrain Camouflage Kampfanzug für alle Einsatzbereiche. Robust, flexibel und wetterbeständig.",
+        "en": "Multi-terrain camouflage combat suit for all deployment areas. Robust, flexible and weather resistant."
+      },
+      "specs": {
+        "de": ["Multi-Terrain", "Ripstop", "Wasserfest"],
+        "en": ["Multi-Terrain", "Ripstop", "Waterproof"]
       },
       "features": {
         "de": [
-          "Ripstop-Material",
-          "Verstärkte Zonen",
-          "Integrierte Taschen",
-          "Atmungsaktiv"
+          "Multi-Terrain Camouflage",
+          "Ripstop-Gewebe",
+          "Verstärkte Knie/Ellbogen",
+          "Integrierte Taschen"
         ],
         "en": [
-          "Ripstop Material",
-          "Reinforced Zones",
-          "Integrated Pockets",
-          "Breathable"
+          "Multi-Terrain Camouflage",
+          "Ripstop Fabric",
+          "Reinforced Knees/Elbows",
+          "Integrated Pockets"
         ]
       },
-      "colors": ["Multi-Terrain Camo"],
-      "image": "varan-elite-suit.jpg",
-      "bestseller": true
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/1a1a1a/ff8c42?text=Varan+Elite",
+      "bestseller": false
     },
     {
       "id": "sentinel-ops-helmet",
-      "sku": "HEAD-PROTECTION-003",
+      "sku": "SEN-OPS-H1",
+      "division": "tactical",
       "name": {
         "de": "Sentinel Ops Helm",
         "en": "Sentinel Ops Helmet"
       },
-      "category": "body-armor",
+      "category": "helmets",
       "tags": {
-        "de": ["Kopfschutz", "Level II-A Ballistisch"],
-        "en": ["Head Protection", "Level II-A Ballistic"]
+        "de": ["Helme"],
+        "en": ["Helmets"]
+      },
+      "badge": {
+        "de": "PROFESSIONAL",
+        "en": "PROFESSIONAL"
       },
       "description": {
-        "de": "Fortschrittlicher ballistischer Helm mit integrierten Schienensystemen für NVG und Kommunikationsgeräte. Komfortables Polstersystem für Langzeiteinsätze.",
-        "en": "Advanced ballistic helmet with integrated rail systems for NVG and communication devices. Comfortable padding system for extended operations."
+        "de": "Level 4 ballistischer Helm mit NVG-Halterung. Maximaler Schutz für Spezialeinheiten.",
+        "en": "Level 4 ballistic helmet with NVG mount. Maximum protection for special units."
+      },
+      "specs": {
+        "de": ["Level 4", "NVG Mount", "Multi-Hit"],
+        "en": ["Level 4", "NVG Mount", "Multi-Hit"]
       },
       "features": {
         "de": [
           "NIJ Level IIIA",
-          "Integrierte Schienen",
-          "Komfort-Polsterung",
-          "NVG-kompatibel"
+          "NVG-Halterung",
+          "Schienensystem",
+          "Komfort-Polsterung"
         ],
         "en": [
           "NIJ Level IIIA",
-          "Integrated Rails",
-          "Comfort Padding",
-          "NVG Compatible"
+          "NVG Mount",
+          "Rail System",
+          "Comfort Padding"
         ]
       },
-      "colors": ["Black", "Tan", "OD Green"],
-      "image": "sentinel-helmet.jpg",
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/1a1a1a/ff6b35?text=Sentinel+Helmet",
       "bestseller": false
     },
     {
-      "id": "tactical-vest-gen4",
-      "sku": "SPEC-VEST-004",
+      "id": "guardian-plate-carrier",
+      "sku": "GUA-PC-001",
+      "division": "tactical",
       "name": {
-        "de": "Taktische Weste Gen 4",
-        "en": "Tactical Vest Gen 4"
+        "de": "Guardian Plattenträger",
+        "en": "Guardian Plate Carrier"
       },
-      "category": "body-armor",
+      "category": "plate-carriers",
       "tags": {
-        "de": ["Modulare Weste"],
-        "en": ["Modular Vest"]
+        "de": ["Plattenträger"],
+        "en": ["Plate Carriers"]
       },
+      "badge": null,
       "description": {
-        "de": "Die Gen 4 Serie bietet unvergleichliche Modularität für professionelle Operationen. Mit verstärkten lasergeschnittenen MOLLE-Geweben, Schnellverschlüssen und integriertem Hydrationssystem.",
-        "en": "The Gen 4 series offers unparalleled modularity for professional operations. Featuring reinforced laser-cut MOLLE webbing, quick-release buckles, and integrated hydration routing."
+        "de": "Modularer Plattenträger für maximale Flexibilität. NIJ IV Schutz mit MOLLE-System.",
+        "en": "Modular plate carrier for maximum flexibility. NIJ IV protection with MOLLE system."
+      },
+      "specs": {
+        "de": ["NIJ IV", "Modular", "Cummerbund"],
+        "en": ["NIJ IV", "Modular", "Cummerbund"]
       },
       "features": {
         "de": [
-          "Ballistische Platten kompatibel",
-          "1000D Cordura® Nylon",
-          "Verstellbares Kummerbund"
+          "NIJ IV Zertifiziert",
+          "Modulares MOLLE-System",
+          "Verstellbarer Cummerbund",
+          "Schnellverschluss"
         ],
         "en": [
-          "Ballistic Plate Compatible",
-          "1000D Cordura® Nylon",
-          "Adjustable Cummerbund"
+          "NIJ IV Certified",
+          "Modular MOLLE System",
+          "Adjustable Cummerbund",
+          "Quick Release"
         ]
       },
-      "colors": ["Black", "Tan"],
-      "image": "tactical-vest-gen4.jpg",
+      "price": "€899.00",
+      "imageURL": "https://via.placeholder.com/400x400/1a1a1a/ff6b35?text=Guardian+PC",
+      "bestseller": false
+    },
+    {
+      "id": "stealth-ops-backpack",
+      "sku": "STE-BAC-001",
+      "division": "tactical",
+      "name": {
+        "de": "Stealth Ops Rucksack",
+        "en": "Stealth Ops Backpack"
+      },
+      "category": "gear",
+      "tags": {
+        "de": ["Ausrüstung"],
+        "en": ["Gear"]
+      },
+      "badge": null,
+      "description": {
+        "de": "Low-Profile taktischer Rucksack mit 40L Volumen. MOLLE-kompatibel und Hydration-ready.",
+        "en": "Low-profile tactical backpack with 40L volume. MOLLE compatible and hydration ready."
+      },
+      "specs": {
+        "de": ["40L", "MOLLE", "Hydration"],
+        "en": ["40L", "MOLLE", "Hydration"]
+      },
+      "features": {
+        "de": [
+          "40 Liter Volumen",
+          "MOLLE-Webbing",
+          "Hydration-System ready",
+          "Gepolsterte Träger"
+        ],
+        "en": [
+          "40 Liter Volume",
+          "MOLLE Webbing",
+          "Hydration System Ready",
+          "Padded Straps"
+        ]
+      },
+      "price": "€249.00",
+      "imageURL": "https://via.placeholder.com/400x400/1a1a1a/ff8c42?text=Stealth+Backpack",
+      "bestseller": false
+    },
+    {
+      "id": "tactical-gloves-pro",
+      "sku": "TAC-GLV-P1",
+      "division": "tactical",
+      "name": {
+        "de": "Taktische Handschuhe Pro",
+        "en": "Tactical Gloves Pro"
+      },
+      "category": "gear",
+      "tags": {
+        "de": ["Ausrüstung"],
+        "en": ["Gear"]
+      },
+      "badge": null,
+      "description": {
+        "de": "Schnittfeste taktische Handschuhe mit Touchscreen-Kompatibilität. Perfekt für Präzisionsarbeit.",
+        "en": "Cut-resistant tactical gloves with touchscreen compatibility. Perfect for precision work."
+      },
+      "specs": {
+        "de": ["Schnittfest", "Touchscreen", "Verstärkt"],
+        "en": ["Cut-Resistant", "Touchscreen", "Reinforced"]
+      },
+      "features": {
+        "de": [
+          "Schnittfestes Material",
+          "Touchscreen-kompatibel",
+          "Verstärkte Knöchel",
+          "Atmungsaktiv"
+        ],
+        "en": [
+          "Cut-Resistant Material",
+          "Touchscreen Compatible",
+          "Reinforced Knuckles",
+          "Breathable"
+        ]
+      },
+      "price": "€79.00",
+      "imageURL": "https://via.placeholder.com/400x400/1a1a1a/ff6b35?text=Tactical+Gloves",
       "bestseller": false
     }
   ]

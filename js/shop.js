@@ -9,6 +9,7 @@
     let productsData = null;
     let currentLanguage = 'de';
     let currentCategory = 'all';
+    let currentDivision = 'tactical'; // Default to tactical
 
     // Wait for DOM
     if (document.readyState === 'loading') {
@@ -20,6 +21,15 @@
     async function init() {
         // Detect language
         currentLanguage = window.location.pathname.includes('/de/') ? 'de' : 'en';
+        
+        // Detect division from window variable or URL
+        if (window.shopDivision) {
+            currentDivision = window.shopDivision;
+        } else if (window.location.pathname.includes('tactical')) {
+            currentDivision = 'tactical';
+        } else if (window.location.pathname.includes('care')) {
+            currentDivision = 'care';
+        }
         
         // Load products data
         await loadProducts();
@@ -46,13 +56,30 @@
         const categoriesList = document.getElementById('categories-list');
         if (!categoriesList || !productsData) return;
 
+        const divisionData = productsData.divisions[currentDivision];
+        if (!divisionData) return;
+
+        // Filter products by division
+        const divisionProducts = productsData.products.filter(p => p.division === currentDivision);
+
         const allProducts = {
             id: 'all',
-            name: { de: 'Alle Produkte', en: 'All Equipment' },
-            count: productsData.products.length
+            name: { de: 'Alle Produkte', en: 'All Products' },
+            count: divisionProducts.length
         };
 
-        const categories = [allProducts, ...productsData.categories];
+        const categories = [allProducts];
+        
+        // Add categories with product counts
+        divisionData.categories.forEach(cat => {
+            const count = divisionProducts.filter(p => p.category === cat.id).length;
+            if (count > 0) {
+                categories.push({
+                    ...cat,
+                    count: count
+                });
+            }
+        });
 
         categoriesList.innerHTML = categories.map(cat => `
             <button class="category-item ${cat.id === currentCategory ? 'active' : ''}" data-category="${cat.id}">
@@ -69,44 +96,52 @@
         
         if (!productsGrid || !productsData) return;
 
-        // Filter products
-        let filteredProducts = productsData.products;
+        // Filter products by division first
+        let filteredProducts = productsData.products.filter(p => p.division === currentDivision);
+        
+        // Then filter by category
         if (currentCategory !== 'all') {
-            filteredProducts = productsData.products.filter(p => p.category === currentCategory);
+            filteredProducts = filteredProducts.filter(p => p.category === currentCategory);
         }
 
         // Update header
-        const categoryObj = productsData.categories.find(c => c.id === currentCategory);
-        if (categoryTitle) {
+        const divisionData = productsData.divisions[currentDivision];
+        if (categoryTitle && divisionData) {
             if (currentCategory === 'all') {
-                categoryTitle.textContent = currentLanguage === 'de' ? 'Alle Produkte' : 'All Equipment';
-            } else if (categoryObj) {
-                categoryTitle.textContent = categoryObj.name[currentLanguage];
+                categoryTitle.textContent = divisionData.name[currentLanguage];
+            } else {
+                const categoryObj = divisionData.categories.find(c => c.id === currentCategory);
+                if (categoryObj) {
+                    categoryTitle.textContent = categoryObj.name[currentLanguage];
+                }
             }
         }
 
         if (productsCount) {
+            const totalDivisionProducts = productsData.products.filter(p => p.division === currentDivision).length;
             const countText = currentLanguage === 'de' 
-                ? `${filteredProducts.length} von ${productsData.products.length} Produkten`
-                : `Showing ${filteredProducts.length} of ${productsData.products.length} products`;
+                ? `${filteredProducts.length} von ${totalDivisionProducts} Produkten`
+                : `Showing ${filteredProducts.length} of ${totalDivisionProducts} products`;
             productsCount.textContent = countText;
         }
 
         // Render products
         productsGrid.innerHTML = filteredProducts.map(product => {
-            const isBestseller = product.bestseller;
+            const hasBadge = product.badge && product.badge[currentLanguage];
+            const badgeText = hasBadge ? product.badge[currentLanguage] : '';
             const tagText = product.tags[currentLanguage][0] || '';
+            const specs = product.specs[currentLanguage].join(' / ');
             
             return `
                 <div class="product-card" data-product-id="${product.id}">
                     <div class="product-image-wrapper">
-                        <img src="../images/products/${product.image}" alt="${product.name[currentLanguage]}" class="product-image" onerror="this.src='../images/products/placeholder.jpg'">
-                        ${isBestseller ? '<div class="product-badge">BESTSELLER</div>' : ''}
+                        <img src="${product.imageURL}" alt="${product.name[currentLanguage]}" class="product-image">
+                        ${hasBadge ? `<div class="product-badge">${badgeText}</div>` : ''}
                     </div>
                     <div class="product-content">
                         <div class="product-category">${tagText}</div>
                         <h3 class="product-name">${product.name[currentLanguage]}</h3>
-                        <div class="product-colors">${product.colors.join(' / ')}</div>
+                        <div class="product-colors">${specs}</div>
                         <button class="product-cta">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>

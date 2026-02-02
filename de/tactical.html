@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKP Tactical - Shop</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/sections/hero.css">
+    <link rel="stylesheet" href="../css/sections/shop.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body data-division="tactical">
+    <!-- Header Component -->
+    <div id="header-container"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero hero-small shop-hero">
+        <div class="hero-image">
+            <img src="../images/tactical_hero.jpg" alt="CKP Tactical" class="hero-img">
+        </div>
+        <div class="animated-background"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-badge">PROFESSIONAL SERIES</div>
+                <h1 class="hero-title">
+                    PREMIUM AUSRÜSTUNG<br>
+                    FÜR DIE <span class="highlight">FRONTLINIE</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Hochwertige taktische Ausrüstung für Sicherheitskräfte und Spezialeinheiten
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section class="shop-section">
+        <div class="shop-container">
+            <!-- Sidebar -->
+            <aside class="shop-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">KATEGORIEN</h3>
+                    <div id="categories-list" class="categories-list">
+                        <!-- Dynamically loaded -->
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">SCHUTZKLASSE</h3>
+                    <div class="protection-filters">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="sk1" data-filter="protection">
+                            <span>SK1 / HG1</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="sk4" data-filter="protection">
+                            <span>SK4 / IV</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="nij-iiia" data-filter="protection">
+                            <span>NIJ IIIA</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="sidebar-cta">
+                    <div class="cta-icon">❓</div>
+                    <h4>Individuelle Anforderungen?</h4>
+                    <p>Wir bieten spezialisierte Lösungen für Behörden und große Einsätze.</p>
+                    <button class="btn btn-secondary btn-sm open-contact-popup">Direkte Anfrage</button>
+                </div>
+            </aside>
+
+            <!-- Products Grid -->
+            <div class="shop-main">
+                <div class="shop-header">
+                    <div class="shop-info">
+                        <h2 id="category-title">CKP Tactical</h2>
+                        <p id="products-count">Laden...</p>
+                    </div>
+                    <div class="shop-controls">
+                        <select id="sort-select" class="sort-select">
+                            <option value="popularity">Sortieren: Beliebtheit</option>
+                            <option value="name-asc">Name: A-Z</option>
+                            <option value="name-desc">Name: Z-A</option>
+                            <option value="price-asc">Preis: Niedrig-Hoch</option>
+                            <option value="price-desc">Preis: Hoch-Niedrig</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="products-grid" class="products-grid">
+                    <!-- Dynamically loaded products -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="prev-page" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div id="pagination-numbers"></div>
+                    <button class="pagination-btn" id="next-page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Set division for shop
+        window.shopDivision = 'tactical';
+    </script>
+    <script defer src="../js/components/de/header.js"></script>
+    <script defer src="../js/components/de/footer.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script defer src="../js/cursor-follower.js"></script>
+    <script defer src="../js/contact-popup.js"></script>
+    <script defer src="../js/shop.js"></script>
+    <script defer src="../js/product-inquiry.js"></script>
+</body>
+</html>

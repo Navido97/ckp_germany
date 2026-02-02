@@ -547,7 +547,7 @@
     function updateProductInfo() {
         if (!currentProduct) return;
 
-        document.getElementById('inquiry-product-image').src = `../images/products/${currentProduct.image}`;
+        document.getElementById('inquiry-product-image').src = currentProduct.imageURL;
         document.getElementById('inquiry-product-image').alt = currentProduct.name[currentLanguage];
         document.getElementById('inquiry-product-name').textContent = currentProduct.name[currentLanguage];
         document.getElementById('inquiry-product-sku').textContent = `SKU: ${currentProduct.sku}`;
