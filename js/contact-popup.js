@@ -1,6 +1,7 @@
 /**
  * Contact Popup Modal
  * Creates and handles popup contact form
+ * Supports pre-filling subject/product when triggered from a product card
  */
 
 (function() {
@@ -21,11 +22,13 @@
 
     function createPopupHTML() {
         // Detect language
-        const isGerman = window.location.pathname.includes('/de/');
+        const isGerman = !window.location.pathname.includes('/en/');
         
         const texts = isGerman ? {
             title: 'Kontakt aufnehmen',
             subtitle: 'Wir antworten innerhalb von 24 Stunden',
+            productTitle: 'Produktanfrage',
+            productSubtitle: 'Wir melden uns schnellstmöglich bei Ihnen',
             name: 'Name',
             email: 'E-Mail',
             subject: 'Betreff',
@@ -36,10 +39,15 @@
             error: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.',
             requiredFields: 'Bitte füllen Sie alle Pflichtfelder aus.',
             invalidEmail: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
-            messageLength: 'Ihre Nachricht muss mindestens 10 Zeichen lang sein.'
+            messageLength: 'Ihre Nachricht muss mindestens 10 Zeichen lang sein.',
+            productLabel: 'Produkt',
+            messagePlaceholder: 'Ihre Nachricht...',
+            productMessagePlaceholder: 'Ich interessiere mich für dieses Produkt und habe folgende Fragen:'
         } : {
             title: 'Get in touch',
             subtitle: 'We respond within 24 hours',
+            productTitle: 'Product Inquiry',
+            productSubtitle: 'We will get back to you as soon as possible',
             name: 'Name',
             email: 'Email',
             subject: 'Subject',
@@ -50,7 +58,10 @@
             error: 'An error occurred. Please try again.',
             requiredFields: 'Please fill in all required fields.',
             invalidEmail: 'Please enter a valid email address.',
-            messageLength: 'Your message must be at least 10 characters long.'
+            messageLength: 'Your message must be at least 10 characters long.',
+            productLabel: 'Product',
+            messagePlaceholder: 'Your message...',
+            productMessagePlaceholder: 'I am interested in this product and have the following questions:'
         };
 
         const popupHTML = `
@@ -65,8 +76,14 @@
                     </button>
                     
                     <div class="popup-header">
-                        <h2>${texts.title}</h2>
-                        <p>${texts.subtitle}</p>
+                        <h2 id="popup-title">${texts.title}</h2>
+                        <p id="popup-subtitle">${texts.subtitle}</p>
+                    </div>
+
+                    <!-- Product badge — shown only for product inquiries -->
+                    <div id="popup-product-badge" class="popup-product-badge hidden">
+                        <span class="product-badge-icon">📦</span>
+                        <span id="popup-product-name-display"></span>
                     </div>
                     
                     <form id="popup-contact-form" class="popup-form">
@@ -88,7 +105,7 @@
                         
                         <div class="form-group">
                             <label for="popup-message">${texts.message} *</label>
-                            <textarea id="popup-message" name="message" rows="5" required></textarea>
+                            <textarea id="popup-message" name="message" rows="5" required placeholder="${texts.messagePlaceholder}"></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary popup-submit">
@@ -186,7 +203,7 @@
 
                 .popup-header {
                     text-align: center;
-                    margin-bottom: 2rem;
+                    margin-bottom: 1.5rem;
                 }
 
                 .popup-header h2 {
@@ -198,6 +215,31 @@
                 .popup-header p {
                     color: var(--text-light);
                     font-size: 1rem;
+                }
+
+                /* Product badge shown when triggered from a product card */
+                .popup-product-badge {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    background: linear-gradient(135deg, #f8f9fa 0%, #f0f0f0 100%);
+                    border: 2px solid #e0e0e0;
+                    border-radius: 12px;
+                    padding: 0.875rem 1.25rem;
+                    margin-bottom: 1.75rem;
+                    font-weight: 600;
+                    font-size: 0.95rem;
+                    color: var(--text-dark);
+                    transition: all 0.3s ease;
+                }
+
+                .popup-product-badge.hidden {
+                    display: none;
+                }
+
+                .product-badge-icon {
+                    font-size: 1.25rem;
+                    flex-shrink: 0;
                 }
 
                 .popup-form {
@@ -342,112 +384,161 @@
 
         document.body.insertAdjacentHTML('beforeend', popupHTML);
         
-        // Store texts for later use
+        // Store texts globally for use by other scripts
         window.contactPopupTexts = texts;
     }
 
     function attachEventListeners() {
-        const popup = document.getElementById('contact-popup');
-        const openButtons = document.querySelectorAll('.open-contact-popup');
+        const popup      = document.getElementById('contact-popup');
         const closeButton = popup.querySelector('.popup-close');
-        const overlay = popup.querySelector('.popup-overlay');
-        const form = document.getElementById('popup-contact-form');
+        const overlay    = popup.querySelector('.popup-overlay');
+        const form       = document.getElementById('popup-contact-form');
 
-        // Open popup
-        openButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                popup.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Focus first input
-                setTimeout(() => {
-                    document.getElementById('popup-name').focus();
-                }, 300);
-            });
+        // Generic open buttons (sidebar CTA etc.) — no product context
+        document.querySelectorAll('.open-contact-popup').forEach(btn => {
+            btn.addEventListener('click', () => openPopup());
         });
 
-        // Close popup
+        // Product card "Anfragen" buttons — delegated on document so it works
+        // for dynamically rendered cards (shop.js, workwear-shop.js, etc.)
+        document.addEventListener('click', e => {
+            const btn = e.target.closest('.open-inquiry');
+            if (!btn) return;
+
+            const productName = btn.dataset.productName || btn.dataset.productname || '';
+            const productId   = btn.dataset.productId   || btn.dataset.productid   || '';
+            openPopup({ productName, productId });
+        });
+
+        // Close handlers
         const closePopup = () => {
             popup.classList.remove('active');
             document.body.style.overflow = '';
-            
-            // Reset form after animation
             setTimeout(() => {
-                form.reset();
-                document.getElementById('popup-success').classList.add('hidden');
-                document.getElementById('popup-error').classList.add('hidden');
+                resetPopup();
             }, 300);
         };
 
         closeButton.addEventListener('click', closePopup);
         overlay.addEventListener('click', closePopup);
-
-        // ESC key to close
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && popup.classList.contains('active')) {
-                closePopup();
-            }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && popup.classList.contains('active')) closePopup();
         });
 
         // Form submission
         form.addEventListener('submit', handleSubmit);
     }
 
+    /**
+     * Open the popup.
+     * @param {Object} [options]
+     * @param {string} [options.productName]  - Pre-fills subject & shows product badge
+     * @param {string} [options.productId]    - Stored on form as data attribute
+     * @param {string} [options.subject]      - Generic subject override
+     */
+    function openPopup(options) {
+        options = options || {};
+
+        const popup        = document.getElementById('contact-popup');
+        const titleEl      = document.getElementById('popup-title');
+        const subtitleEl   = document.getElementById('popup-subtitle');
+        const subjectInput = document.getElementById('popup-subject');
+        const messageArea  = document.getElementById('popup-message');
+        const badge        = document.getElementById('popup-product-badge');
+        const badgeName    = document.getElementById('popup-product-name-display');
+        const form         = document.getElementById('popup-contact-form');
+        const texts        = window.contactPopupTexts;
+
+        if (options.productName) {
+            // Product inquiry mode
+            titleEl.textContent    = texts.productTitle;
+            subtitleEl.textContent = texts.productSubtitle;
+            subjectInput.value     = `Anfrage: ${options.productName}`;
+            messageArea.placeholder = texts.productMessagePlaceholder;
+            badge.classList.remove('hidden');
+            badgeName.textContent  = options.productName;
+            if (options.productId) form.dataset.productId = options.productId;
+        } else {
+            // Generic contact mode
+            titleEl.textContent    = texts.title;
+            subtitleEl.textContent = texts.subtitle;
+            subjectInput.value     = options.subject || '';
+            messageArea.placeholder = texts.messagePlaceholder;
+            badge.classList.add('hidden');
+            delete form.dataset.productId;
+        }
+
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Focus name field after animation
+        setTimeout(() => {
+            document.getElementById('popup-name').focus();
+        }, 300);
+    }
+
+    function resetPopup() {
+        const form      = document.getElementById('popup-contact-form');
+        const titleEl   = document.getElementById('popup-title');
+        const subtitleEl = document.getElementById('popup-subtitle');
+        const badge     = document.getElementById('popup-product-badge');
+        const texts     = window.contactPopupTexts;
+
+        form.reset();
+        titleEl.textContent    = texts.title;
+        subtitleEl.textContent = texts.subtitle;
+        badge.classList.add('hidden');
+        delete form.dataset.productId;
+
+        document.getElementById('popup-success').classList.add('hidden');
+        document.getElementById('popup-error').classList.add('hidden');
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const form = e.target;
+        const form      = e.target;
         const submitBtn = form.querySelector('.popup-submit');
-        const btnText = submitBtn.querySelector('.btn-text');
+        const btnText   = submitBtn.querySelector('.btn-text');
         const successMsg = document.getElementById('popup-success');
-        const errorMsg = document.getElementById('popup-error');
-        const texts = window.contactPopupTexts;
+        const errorMsg  = document.getElementById('popup-error');
+        const texts     = window.contactPopupTexts;
 
-        // Get form data
         const formData = {
-            name: form.name.value,
-            email: form.email.value,
-            subject: form.subject.value,
-            message: form.message.value
+            name:      form.name.value,
+            email:     form.email.value,
+            subject:   form.subject.value,
+            message:   form.message.value,
+            productId: form.dataset.productId || null
         };
 
-        // Validate
-        if (!validateForm(formData, texts)) {
-            return;
-        }
+        if (!validateForm(formData, texts)) return;
 
-        // Disable button
+        // Disable button & show spinner
         submitBtn.disabled = true;
         btnText.textContent = texts.sending;
         submitBtn.querySelector('svg').classList.add('spinner');
-
-        // Hide messages
         successMsg.classList.add('hidden');
         errorMsg.classList.add('hidden');
 
         try {
-            // Simulate API call
+            // TODO: Replace with real API call, e.g. fetch('/api/contact', { method:'POST', body: JSON.stringify(formData) })
             await new Promise(resolve => setTimeout(resolve, 1500));
 
-            // Success
             successMsg.classList.remove('hidden');
             form.reset();
-            
-            console.log('Form submitted:', formData);
+            console.log('[ContactPopup] Form submitted:', formData);
 
-            // Auto close after 3 seconds
+            // Auto-close after success
             setTimeout(() => {
                 document.getElementById('contact-popup').classList.remove('active');
                 document.body.style.overflow = '';
-                
-                setTimeout(() => {
-                    successMsg.classList.add('hidden');
-                }, 300);
+                setTimeout(() => successMsg.classList.add('hidden'), 300);
             }, 3000);
 
         } catch (error) {
             errorMsg.classList.remove('hidden');
-            console.error('Submission error:', error);
+            console.error('[ContactPopup] Submission error:', error);
         } finally {
             submitBtn.disabled = false;
             btnText.textContent = texts.send;
@@ -460,38 +551,28 @@
             alert(texts.requiredFields);
             return false;
         }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email)) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
             alert(texts.invalidEmail);
             return false;
         }
-
         if (data.message.length < 10) {
             alert(texts.messageLength);
             return false;
         }
-
         return true;
     }
 
     function addAOSAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('aos-animate');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('aos-animate');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        document.querySelectorAll('[data-aos]').forEach(element => {
-            observer.observe(element);
-        });
+        document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
     }
+
+    // Expose globally so other scripts (workwear-shop.js, shop.js etc.) can call it directly
+    window.openContactPopup = openPopup;
 
 })();

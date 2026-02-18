@@ -242,6 +242,23 @@ section {
     display: inline-block;
 }
 
+/* Dropdown Icon Color Variants */
+.tactical-icon {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+}
+
+.care-icon {
+    background: linear-gradient(135deg, #e8f4ff 0%, #d4e9ff 100%);
+}
+
+.merch-icon {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.workwear-icon {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
 /* Animated Background */
 @keyframes gradientShift {
     0% {

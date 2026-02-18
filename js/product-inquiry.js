@@ -1,7 +1,6 @@
 /**
  * Product Inquiry Popup
  * Opens detailed inquiry form for specific products
- * UPDATED: Larger product images
  */
 
 (function() {
@@ -122,7 +121,7 @@
 
                                 <div class="form-group">
                                     <label id="label-message">Special Requirements or Message</label>
-                                    <textarea id="inquiry-message" name="message" rows="3"></textarea>
+                                    <textarea id="inquiry-message" name="message" rows="4"></textarea>
                                 </div>
 
                                 <div class="form-actions">
@@ -195,7 +194,7 @@
 
                 .inquiry-content {
                     position: relative;
-                    max-width: 1400px;
+                    max-width: 1200px;
                     margin: 2rem auto;
                     background: linear-gradient(135deg, #2a2520 0%, #1a1512 100%);
                     border-radius: 16px;
@@ -228,7 +227,7 @@
 
                 .inquiry-grid {
                     display: grid;
-                    grid-template-columns: 1.2fr 1fr;
+                    grid-template-columns: 1fr 1fr;
                 }
 
                 /* Left: Product Info */
@@ -258,7 +257,7 @@
 
                 .product-image-large {
                     width: 100%;
-                    height: 550px;
+                    height: 350px;
                     background: rgba(0, 0, 0, 0.3);
                     border-radius: 12px;
                     overflow: hidden;
@@ -278,7 +277,7 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    object-fit: contain;
+                    object-fit: cover;
                     opacity: 0;
                     transition: opacity 0.5s ease;
                 }
@@ -414,20 +413,20 @@
                 .inquiry-form-wrapper > p {
                     color: #999;
                     line-height: 1.6;
-                    margin-bottom: 1.5rem;
+                    margin-bottom: 2rem;
                     font-size: 0.9rem;
                 }
 
                 .inquiry-form {
                     display: flex;
                     flex-direction: column;
-                    gap: 1rem;
+                    gap: 1.25rem;
                 }
 
                 .form-row-2 {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
-                    gap: 1rem;
+                    gap: 1.25rem;
                 }
 
                 .form-group label {
@@ -593,10 +592,6 @@
                     .inquiry-product,
                     .inquiry-form-wrapper {
                         padding: 2rem 1.5rem;
-                    }
-
-                    .product-image-large {
-                        height: 400px;
                     }
 
                     .form-row-2 {

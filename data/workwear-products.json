@@ -1,0 +1,163 @@
+{
+  "divisions": {
+    "workwear": {
+      "name": {
+        "de": "CKP Workwear",
+        "en": "CKP Workwear"
+      },
+      "description": {
+        "de": "Professionelle Arbeitskleidung für alle Branchen und Einsatzbereiche. Funktional, langlebig und auf Ihre Anforderungen zugeschnitten.",
+        "en": "Professional workwear for all industries and deployment areas. Functional, durable and tailored to your requirements."
+      },
+      "categories": [
+        { "id": "arbeitshosen",    "name": { "de": "Arbeitshosen",    "en": "Work Trousers" } },
+        { "id": "jacken",          "name": { "de": "Jacken & Mäntel",  "en": "Jackets & Coats" } },
+        { "id": "shirts",          "name": { "de": "Shirts & Polos",   "en": "Shirts & Polos" } },
+        { "id": "overalls",        "name": { "de": "Overalls",         "en": "Overalls" } },
+        { "id": "warnschutz",      "name": { "de": "Warnschutz",       "en": "Hi-Vis" } },
+        { "id": "flammschutz",     "name": { "de": "Flammschutz",      "en": "Flame Protection" } },
+        { "id": "arbeitskleidung", "name": { "de": "Sonstiges",        "en": "Other" } }
+      ]
+    }
+  },
+  "products": [
+    {
+      "id": "workwear-001",
+      "sku": "WW-HOSE-001",
+      "division": "workwear",
+      "name": { "de": "Arbeitshose X-Pro Stretch", "en": "Work Trousers X-Pro Stretch" },
+      "category": "arbeitshosen",
+      "categoryLabel": "Arbeitshosen",
+      "tags": { "de": ["Arbeitshosen"], "en": ["Work Trousers"] },
+      "badge": { "de": "BESTSELLER", "en": "BESTSELLER" },
+      "description": {
+        "de": "Robuste Stretchhose mit optimaler Bewegungsfreiheit. Ideal für handwerkliche Berufe und Outdoor-Einsätze.",
+        "en": "Robust stretch trousers with optimal freedom of movement. Ideal for trade professions and outdoor use."
+      },
+      "specs": { "de": ["Stretch", "Kniepads", "Wasserdicht"], "en": ["Stretch", "Knee Pads", "Water-Resistant"] },
+      "features": {
+        "de": ["4-Wege-Stretch-Gewebe", "Integrierte Kniepolstertaschen", "Wasserabweisende Imprägnierung", "Für Handwerk & Industrie"],
+        "en": ["4-Way Stretch Fabric", "Integrated Knee Pad Pockets", "Water-Repellent Finish", "For Trades & Industry"]
+      },
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/2e7d32/ffffff?text=Arbeitshose+X-Pro",
+      "images": ["https://via.placeholder.com/400x400/2e7d32/ffffff?text=Arbeitshose+X-Pro"],
+      "bestseller": true
+    },
+    {
+      "id": "workwear-002",
+      "sku": "WW-JACK-001",
+      "division": "workwear",
+      "name": { "de": "Softshell-Jacke WorkGuard", "en": "WorkGuard Softshell Jacket" },
+      "category": "jacken",
+      "categoryLabel": "Jacken & Mäntel",
+      "tags": { "de": ["Jacken & Mäntel"], "en": ["Jackets & Coats"] },
+      "badge": { "de": "NEU", "en": "NEW" },
+      "description": {
+        "de": "Atmungsaktive Softshell-Jacke für Außeneinsätze. Wind- und wasserabweisend mit angenehmen Tragekomfort.",
+        "en": "Breathable softshell jacket for outdoor use. Wind and water repellent with excellent wearing comfort."
+      },
+      "specs": { "de": ["Softshell", "Windschutz", "Atmungsaktiv"], "en": ["Softshell", "Windproof", "Breathable"] },
+      "features": {
+        "de": ["3-Lagen-Softshell", "Winddicht & wasserabweisend", "Fleece-Innenfutter", "Einsatz bei 0–15 °C"],
+        "en": ["3-Layer Softshell", "Windproof & Water-Repellent", "Fleece Inner Lining", "Use at 0–15 °C"]
+      },
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/2e7d32/ffffff?text=Softshell+WorkGuard",
+      "images": ["https://via.placeholder.com/400x400/2e7d32/ffffff?text=Softshell+WorkGuard"],
+      "bestseller": false
+    },
+    {
+      "id": "workwear-003",
+      "sku": "WW-WARN-001",
+      "division": "workwear",
+      "name": { "de": "Warnschutzjacke EN ISO 20471", "en": "Hi-Vis Jacket EN ISO 20471" },
+      "category": "warnschutz",
+      "categoryLabel": "Warnschutz",
+      "tags": { "de": ["Warnschutz"], "en": ["Hi-Vis"] },
+      "badge": null,
+      "description": {
+        "de": "Zertifizierte Warnschutzjacke nach EN ISO 20471 Klasse 3. Für Baustellen, Straßenbau und Gleisarbeiten.",
+        "en": "Certified hi-vis jacket to EN ISO 20471 Class 3. For construction sites, road works and rail work."
+      },
+      "specs": { "de": ["EN ISO 20471", "Klasse 3", "Reflexstreifen"], "en": ["EN ISO 20471", "Class 3", "Reflective Strips"] },
+      "features": {
+        "de": ["Zertifizierung EN ISO 20471 Klasse 3", "Hochreflektierende Streifen", "Reißfestes Gewebe", "Für Straßen- & Gleisbau"],
+        "en": ["EN ISO 20471 Class 3 Certified", "High-Reflective Strips", "Tear-Resistant Fabric", "For Road & Rail Work"]
+      },
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/f57f17/ffffff?text=Warnschutz+EN+20471",
+      "images": ["https://via.placeholder.com/400x400/f57f17/ffffff?text=Warnschutz+EN+20471"],
+      "bestseller": false
+    },
+    {
+      "id": "workwear-004",
+      "sku": "WW-FLAMM-001",
+      "division": "workwear",
+      "name": { "de": "Flammschutz-Overall Arc-Shield", "en": "Arc-Shield Flame Resistant Overall" },
+      "category": "flammschutz",
+      "categoryLabel": "Flammschutz",
+      "tags": { "de": ["Flammschutz"], "en": ["Flame Protection"] },
+      "badge": { "de": "PROFESSIONAL", "en": "PROFESSIONAL" },
+      "description": {
+        "de": "Flammhemmender Overall nach EN 11612 für Schweißer und Elektriker. Schützt vor Lichtbogen und Flammen.",
+        "en": "Flame-resistant overall to EN 11612 for welders and electricians. Protects against arc flash and flames."
+      },
+      "specs": { "de": ["EN 11612", "Arc-Flash", "Antistatisch"], "en": ["EN 11612", "Arc Flash", "Antistatic"] },
+      "features": {
+        "de": ["Zertifizierung EN 11612", "Lichtbogenschutz (APC 1)", "Antistatische Ausrüstung", "Für Schweißer & Elektriker"],
+        "en": ["EN 11612 Certified", "Arc Flash Protection (APC 1)", "Antistatic Finish", "For Welders & Electricians"]
+      },
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/b71c1c/ffffff?text=Flammschutz+Arc-Shield",
+      "images": ["https://via.placeholder.com/400x400/b71c1c/ffffff?text=Flammschutz+Arc-Shield"],
+      "bestseller": false
+    },
+    {
+      "id": "workwear-005",
+      "sku": "WW-POLO-001",
+      "division": "workwear",
+      "name": { "de": "Polo-Shirt WorkPro", "en": "WorkPro Polo Shirt" },
+      "category": "shirts",
+      "categoryLabel": "Shirts & Polos",
+      "tags": { "de": ["Shirts & Polos"], "en": ["Shirts & Polos"] },
+      "badge": null,
+      "description": {
+        "de": "Strapazierfähiges Poloshirt für den täglichen Arbeitseinsatz. Atmungsaktiv und formstabil.",
+        "en": "Durable polo shirt for daily work use. Breathable and shape-retaining."
+      },
+      "specs": { "de": ["Atmungsaktiv", "Formstabil", "Piqué"], "en": ["Breathable", "Shape-Retaining", "Piqué"] },
+      "features": {
+        "de": ["65 % Polyester / 35 % Baumwolle", "Feuchtigkeitstransport", "Waschbar bis 60 °C", "Für Service & Handwerk"],
+        "en": ["65% Polyester / 35% Cotton", "Moisture Transport", "Washable up to 60 °C", "For Service & Trades"]
+      },
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/1565c0/ffffff?text=Polo+WorkPro",
+      "images": ["https://via.placeholder.com/400x400/1565c0/ffffff?text=Polo+WorkPro"],
+      "bestseller": false
+    },
+    {
+      "id": "workwear-006",
+      "sku": "WW-OVER-001",
+      "division": "workwear",
+      "name": { "de": "Overall Comfort Fit 360°", "en": "Overall Comfort Fit 360°" },
+      "category": "overalls",
+      "categoryLabel": "Overalls",
+      "tags": { "de": ["Overalls"], "en": ["Overalls"] },
+      "badge": null,
+      "description": {
+        "de": "Einteiliger Overall mit 360°-Bewegungsfreiheit. Für vielseitige Einsatzbereiche in Industrie und Handwerk.",
+        "en": "One-piece overall with 360° freedom of movement. For versatile use in industry and trades."
+      },
+      "specs": { "de": ["360° Bewegung", "Reißfest", "Vielseitig"], "en": ["360° Movement", "Tear-Resistant", "Versatile"] },
+      "features": {
+        "de": ["Elastischer Einsatz im Rücken", "Reißfestes Mischgewebe", "Verstellbarer Bund", "Industrie & Handwerk"],
+        "en": ["Elastic Panel in Back", "Tear-Resistant Blend Fabric", "Adjustable Waistband", "Industry & Trades"]
+      },
+      "price": "Auf Anfrage",
+      "imageURL": "https://via.placeholder.com/400x400/37474f/ffffff?text=Overall+Comfort+360",
+      "images": ["https://via.placeholder.com/400x400/37474f/ffffff?text=Overall+Comfort+360"],
+      "bestseller": false
+    }
+  ]
+}

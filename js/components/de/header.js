@@ -116,7 +116,7 @@
                 border-radius: 12px;
                 box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
                 padding: 0.5rem;
-                min-width: 200px;
+                min-width: 220px;
                 list-style: none;
                 margin: 0;
                 opacity: 0;
@@ -164,6 +164,7 @@
                 justify-content: center;
                 font-size: 1.1rem;
                 transition: all 0.3s ease;
+                flex-shrink: 0;
             }
 
             .dropdown-menu a:hover .dropdown-icon {
@@ -176,6 +177,14 @@
 
             .care-icon {
                 background: linear-gradient(135deg, #e8f4ff 0%, #d4e9ff 100%);
+            }
+
+            .merch-icon {
+                background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            }
+
+            .workwear-icon {
+                background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             }
 
             .lang-switcher {
@@ -324,6 +333,18 @@
                                         <span>CKP Care</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="merch.html">
+                                        <span class="dropdown-icon merch-icon">🖊️</span>
+                                        <span>CKP Merch</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="workwear.html">
+                                        <span class="dropdown-icon workwear-icon">👷</span>
+                                        <span>CKP Workwear</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li><a href="contact.html" class="nav-link">KONTAKT</a></li>
@@ -370,7 +391,9 @@
                     (currentPage === 'about.html' && linkHref === 'about.html') ||
                     (currentPage === 'contact.html' && linkHref === 'contact.html') ||
                     (currentPage === 'tactical.html' && link.textContent === 'SHOP') ||
-                    (currentPage === 'care.html' && link.textContent === 'SHOP')) {
+                    (currentPage === 'care.html' && link.textContent === 'SHOP') ||
+                    (currentPage === 'merch.html' && link.textContent === 'SHOP') ||
+                    (currentPage === 'workwear.html' && link.textContent === 'SHOP')) {
                     link.classList.add('active');
                 }
             });
