@@ -1,6 +1,7 @@
 /**
  * Shop Page - Dynamic Product Loading
  * Loads products from JSON and handles filtering/sorting
+ * IMPROVED VERSION with better image handling
  */
 
 (function() {
@@ -19,8 +20,11 @@
     }
 
     async function init() {
+        console.log('🚀 Shop.js initialized');
+        
         // Detect language
         currentLanguage = window.location.pathname.includes('/de/') ? 'de' : 'en';
+        console.log('Language:', currentLanguage);
         
         // Detect division from window variable or URL
         if (window.shopDivision) {
@@ -30,6 +34,7 @@
         } else if (window.location.pathname.includes('care')) {
             currentDivision = 'care';
         }
+        console.log('Division:', currentDivision);
         
         // Load products data
         await loadProducts();
@@ -44,11 +49,14 @@
 
     async function loadProducts() {
         try {
+            console.log('📦 Loading products...');
+            
             // First, try to load from Google Sheets
             if (window.loadSheetProducts) {
+                console.log('Attempting to load from Google Sheets...');
                 const sheetsProducts = await window.loadSheetProducts();
                 if (sheetsProducts && sheetsProducts.length > 0) {
-                    console.log('Using Google Sheets products');
+                    console.log('✅ Using Google Sheets products:', sheetsProducts.length, 'products');
                     productsData = {
                         divisions: {
                             tactical: {
@@ -71,16 +79,28 @@
                         },
                         products: sheetsProducts
                     };
+                    
+                    // Log first product for debugging
+                    if (sheetsProducts[0]) {
+                        console.log('📸 First product images:', sheetsProducts[0].images);
+                    }
+                    
                     return;
                 }
             }
             
             // Fallback to JSON file
+            console.log('⚠️ Google Sheets not available, loading from JSON...');
             const response = await fetch('../data/products.json');
             productsData = await response.json();
+            console.log('✅ Loaded from JSON:', productsData.products.length, 'products');
+            
         } catch (error) {
-            console.error('Error loading products:', error);
-            productsData = { categories: [], products: [] };
+            console.error('❌ Error loading products:', error);
+            productsData = { 
+                divisions: {},
+                products: [] 
+            };
         }
     }
 
@@ -126,14 +146,21 @@
         const productsCount = document.getElementById('products-count');
         const categoryTitle = document.getElementById('category-title');
         
-        if (!productsGrid || !productsData) return;
+        if (!productsGrid || !productsData) {
+            console.error('❌ Missing productsGrid or productsData');
+            return;
+        }
+
+        console.log('🎨 Rendering products...');
 
         // Filter products by division first
         let filteredProducts = productsData.products.filter(p => p.division === currentDivision);
+        console.log(`Filtered by division "${currentDivision}":`, filteredProducts.length);
         
         // Then filter by category
         if (currentCategory !== 'all') {
             filteredProducts = filteredProducts.filter(p => p.category === currentCategory);
+            console.log(`Filtered by category "${currentCategory}":`, filteredProducts.length);
         }
 
         // Update header
@@ -158,7 +185,7 @@
         }
 
         // Render products
-        productsGrid.innerHTML = filteredProducts.map(product => {
+        productsGrid.innerHTML = filteredProducts.map((product, idx) => {
             const hasBadge = product.badge && product.badge[currentLanguage];
             const badgeText = hasBadge ? product.badge[currentLanguage] : '';
             const tagText = product.tags[currentLanguage][0] || '';
@@ -168,10 +195,23 @@
             const images = product.images || [product.imageURL];
             const hasMultipleImages = images.length > 1;
             
-            // Generate image gallery HTML
-            const imageGalleryHTML = images.map((img, idx) => 
-                `<img src="${img}" alt="${product.name[currentLanguage]}" class="product-image ${idx === 0 ? 'active' : ''}" data-index="${idx}">`
-            ).join('');
+            // Log images for first product
+            if (idx === 0) {
+                console.log(`📸 Product "${product.name[currentLanguage]}" images:`, images);
+            }
+            
+            // Generate image gallery HTML with error handling
+            const imageGalleryHTML = images.map((img, imgIdx) => {
+                // Add onerror handler to show broken image info
+                return `<img 
+                    src="${img}" 
+                    alt="${product.name[currentLanguage]}" 
+                    class="product-image ${imgIdx === 0 ? 'active' : ''}" 
+                    data-index="${imgIdx}"
+                    onerror="console.error('❌ Failed to load image:', this.src); this.style.border='2px solid red';"
+                    onload="console.log('✅ Image loaded:', this.src.substring(0, 60) + '...');"
+                >`;
+            }).join('');
             
             return `
                 <div class="product-card" data-product-id="${product.id}">
@@ -191,7 +231,7 @@
                                 </svg>
                             </button>
                             <div class="image-dots">
-                                ${images.map((_, idx) => `<span class="dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>`).join('')}
+                                ${images.map((_, dotIdx) => `<span class="dot ${dotIdx === 0 ? 'active' : ''}" data-index="${dotIdx}"></span>`).join('')}
                             </div>
                         ` : ''}
                         ${hasBadge ? `<div class="product-badge">${badgeText}</div>` : ''}
@@ -211,6 +251,8 @@
                 </div>
             `;
         }).join('');
+
+        console.log('✅ Products rendered');
 
         // Add click handlers to product cards and image navigation
         document.querySelectorAll('.product-card').forEach(card => {
@@ -267,6 +309,8 @@
     function openProductInquiry(productId) {
         const product = productsData.products.find(p => p.id === productId);
         if (!product) return;
+
+        console.log('📧 Opening inquiry for:', product.name[currentLanguage]);
 
         // Dispatch event for product inquiry popup
         const event = new CustomEvent('openProductInquiry', {
