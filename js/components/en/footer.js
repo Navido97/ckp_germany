@@ -139,7 +139,7 @@
         const root  = depth > 0 ? '../'.repeat(depth) : './';
 
         // Logo
-        document.querySelectorAll('[data-logo]').forEach(el => { el.src = root + 'images/logos/logo.png'; });
+        document.querySelectorAll('[data-logo]').forEach(el => { el.src = root + '../images/logos/logo.png'; });
 
         // Quick Links — all pointing to EN pages
         document.getElementById('fl-home').href     = root + 'en/index.html';
