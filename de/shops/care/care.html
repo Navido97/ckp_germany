@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKP Care - Shop</title>
+
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="../../../css/main.css">
+    <link rel="stylesheet" href="../../../css/sections/hero.css">
+    <!-- Shop-specific CSS -->
+    <link rel="stylesheet" href="./care-shop.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body data-division="care">
+    <div id="header-container"></div>
+
+    <section class="hero hero-small shop-hero">
+        <div class="hero-image">
+            <img src="../../../images/care_hero.jpg" alt="CKP Care" class="hero-img">
+        </div>
+        <div class="animated-background"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-badge">MEDICAL GRADE</div>
+                <h1 class="hero-title">
+                    PROFESSIONELLER<br>
+                    <span class="highlight">MEDIZINBEDARF</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Zertifizierte Medizinprodukte für Einsatzkräfte, Kliniken und Rettungsdienste
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="shop-section">
+        <div class="shop-container">
+            <aside class="shop-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">KATEGORIEN</h3>
+                    <div id="categories-list" class="categories-list"></div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">ZERTIFIZIERUNG</h3>
+                    <div class="protection-filters">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="ce" data-filter="cert">
+                            <span>CE-zertifiziert</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="iso" data-filter="cert">
+                            <span>ISO 13485</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="mdr" data-filter="cert">
+                            <span>MDR konform</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="sterile" data-filter="cert">
+                            <span>Steril verpackt</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="sidebar-cta">
+                    <div class="cta-icon">⚕️</div>
+                    <h4>Individuelle Anforderungen?</h4>
+                    <p>Wir bieten maßgeschneiderte Lösungen für Kliniken, Rettungsdienste und Behörden.</p>
+                    <button class="btn-sm open-contact-popup">Direkte Anfrage</button>
+                </div>
+            </aside>
+
+            <div class="shop-main">
+                <div class="shop-header">
+                    <div class="shop-info">
+                        <h2 id="category-title">CKP Care</h2>
+                        <p id="products-count">Laden...</p>
+                    </div>
+                    <div class="shop-controls">
+                        <select id="sort-select" class="sort-select">
+                            <option value="popularity">Sortieren: Beliebtheit</option>
+                            <option value="name-asc">Name: A-Z</option>
+                            <option value="name-desc">Name: Z-A</option>
+                            <option value="newest">Neueste zuerst</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="products-grid" class="products-grid"></div>
+
+                <div class="pagination">
+                    <button class="pagination-btn" id="prev-page" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <div id="pagination-numbers"></div>
+                    <button class="pagination-btn" id="next-page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+
+    <!-- Shared JS -->
+    <script defer src="../../../js/components/de/header.js"></script>
+    <script defer src="../../../js/components/de/footer.js"></script>
+    <script defer src="../../../js/main.js"></script>
+    <script defer src="../../../js/cursor-follower.js"></script>
+    <script defer src="../../../js/contact-popup.js"></script>
+    <!-- Shop JS -->
+    <script defer src="./care-sheets.js"></script>
+    <script defer src="./care-shop.js"></script>
+    <script defer src="./care-inquiry.js"></script>
+</body>
+</html>
