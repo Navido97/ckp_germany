@@ -136,7 +136,7 @@
                 const canvas = document.createElement('canvas');
                 canvas.width = size; canvas.height = size;
                 const ctx = canvas.getContext('2d');
-                ctx.fillStyle = '#1a1a1a';
+                ctx.fillStyle = '#ffffff';
                 ctx.fillRect(0, 0, size, size);
                 ctx.drawImage(img, 0, 0, cropWidth, img.naturalHeight, 4, 4, size - 8, size - 8);
                 const link = document.getElementById('ckp-favicon') || document.createElement('link');
