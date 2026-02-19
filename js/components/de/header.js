@@ -1,37 +1,20 @@
-// DE Header Component — updated shop paths for de/shops/*/shop.html structure
+// DE Header Component — GitHub Pages compatible (BASE: /ckp_germany/)
 (function() {
     const headerHTML = `
         <style>
             .header {
-                position: fixed;
-                top: 0; left: 0; right: 0;
-                z-index: 1000;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-                transition: all 0.3s ease;
+                position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+                background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+                box-shadow: 0 2px 20px rgba(0,0,0,0.05); transition: all 0.3s ease;
             }
-            .header.scrolled {
-                background: rgba(255, 255, 255, 0.98);
-                box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
-            }
+            .header.scrolled { background: rgba(255,255,255,0.98); box-shadow: 0 2px 30px rgba(0,0,0,0.1); }
             .header-container {
-                max-width: 1400px;
-                margin: 0 auto;
-                padding: 0 2rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: 80px;
+                max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+                display: flex; justify-content: space-between; align-items: center; height: 80px;
             }
-            .logo {
-                display: flex; align-items: center;
-                text-decoration: none;
-                transition: transform 0.3s ease;
-            }
+            .logo { display: flex; align-items: center; text-decoration: none; transition: transform 0.3s ease; }
             .logo:hover { transform: translateY(-2px); }
             .logo-image { width: 150px; height: auto; object-fit: contain; }
-
             .nav { display: flex; align-items: center; gap: 2.5rem; }
             .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
             .nav-link {
@@ -39,98 +22,62 @@
                 position: relative; transition: color 0.3s ease; padding: 0.5rem 0;
             }
             .nav-link::after {
-                content: ''; position: absolute; bottom: 0; left: 0;
-                width: 0; height: 2px;
-                background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
-                transition: width 0.3s ease;
+                content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+                background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%); transition: width 0.3s ease;
             }
             .nav-link:hover { color: #ff6b35; }
             .nav-link:hover::after { width: 100%; }
             .nav-link.active { color: #ff6b35; }
             .nav-link.active::after { width: 100%; }
-
             .nav-dropdown { position: relative; }
             .nav-dropdown > .nav-link::after { display: none; }
-
             .dropdown-menu {
-                position: absolute;
-                top: calc(100% + 10px);
-                left: 50%;
+                position: absolute; top: calc(100% + 10px); left: 50%;
                 transform: translateX(-50%) translateY(-10px);
-                background: white;
-                border-radius: 12px;
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-                padding: 0.5rem;
-                min-width: 220px;
-                list-style: none; margin: 0;
-                opacity: 0; visibility: hidden;
-                transition: all 0.3s ease;
-                z-index: 100;
+                background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+                padding: 0.5rem; min-width: 220px; list-style: none; margin: 0;
+                opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 100;
             }
-            .nav-dropdown:hover .dropdown-menu {
-                opacity: 1; visibility: visible;
-                transform: translateX(-50%) translateY(0);
-            }
+            .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
             .dropdown-menu li { margin: 0; }
             .dropdown-menu a {
-                display: flex; align-items: center; gap: 0.75rem;
-                padding: 0.875rem 1rem; color: #333; text-decoration: none;
-                font-weight: 500; font-size: 0.9rem; border-radius: 8px;
-                transition: all 0.3s ease;
+                display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1rem;
+                color: #333; text-decoration: none; font-weight: 500; font-size: 0.9rem;
+                border-radius: 8px; transition: all 0.3s ease;
             }
-            .dropdown-menu a:hover {
-                background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
-                color: white; transform: translateX(5px);
-            }
-            .dropdown-icon {
-                width: 32px; height: 32px; border-radius: 8px;
-                display: flex; align-items: center; justify-content: center;
-                font-size: 1.1rem; transition: all 0.3s ease; flex-shrink: 0;
-            }
+            .dropdown-menu a:hover { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; transform: translateX(5px); }
+            .dropdown-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.3s ease; flex-shrink: 0; }
             .dropdown-menu a:hover .dropdown-icon { transform: scale(1.1); }
             .tactical-icon  { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); }
             .care-icon      { background: linear-gradient(135deg, #e8f4ff 0%, #d4e9ff 100%); }
             .merch-icon     { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }
             .workwear-icon  { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
-
             .lang-switcher { display: flex; gap: 0.5rem; align-items: center; }
             .lang-btn {
-                padding: 0.4rem 0.8rem; border: none; background: transparent;
-                color: #666; font-weight: 500; font-size: 0.9rem;
-                cursor: pointer; transition: all 0.3s ease;
+                padding: 0.4rem 0.8rem; border: none; background: transparent; color: #666;
+                font-weight: 500; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease;
                 border-radius: 4px; text-decoration: none;
             }
             .lang-btn:hover { background: #f5f5f5; color: #ff6b35; }
-            .lang-btn.active {
-                background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
-                color: white;
-            }
-
+            .lang-btn.active { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; }
             .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: #333; }
             .mobile-menu-btn svg { width: 28px; height: 28px; }
-
             @media (max-width: 768px) {
                 .header-container { height: 70px; padding: 0 1.5rem; }
                 .nav {
                     position: fixed; top: 70px; left: 0; right: 0;
-                    background: rgba(255, 255, 255, 0.98);
-                    backdrop-filter: blur(10px);
+                    background: rgba(255,255,255,0.98); backdrop-filter: blur(10px);
                     flex-direction: column; gap: 0; padding: 2rem;
-                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-                    transform: translateY(-100%); opacity: 0;
-                    transition: all 0.3s ease; pointer-events: none;
-                    max-height: calc(100vh - 70px); overflow-y: auto;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                    transform: translateY(-100%); opacity: 0; transition: all 0.3s ease;
+                    pointer-events: none; max-height: calc(100vh - 70px); overflow-y: auto;
                 }
                 .nav.active { transform: translateY(0); opacity: 1; pointer-events: all; }
                 .nav-links { flex-direction: column; gap: 0; width: 100%; }
                 .nav-links > li { width: 100%; }
                 .nav-link { font-size: 1.1rem; padding: 1rem 0; display: block; width: 100%; }
                 .nav-dropdown { width: 100%; }
-                .dropdown-menu {
-                    position: static; transform: none; opacity: 1; visibility: visible;
-                    box-shadow: none; background: #f8f9fa;
-                    margin-top: 0.5rem; padding: 0.5rem;
-                }
+                .dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; box-shadow: none; background: #f8f9fa; margin-top: 0.5rem; padding: 0.5rem; }
                 .dropdown-menu a { padding: 0.75rem 1rem; }
                 .mobile-menu-btn { display: block; }
                 .lang-switcher { margin-top: 1.5rem; }
@@ -139,55 +86,32 @@
 
         <header class="header">
             <div class="header-container">
-                <a href="index.html" class="logo" id="header-logo-link">
-                    <img src="" data-logo="true" alt="CKP Germany Logo" class="logo-image">
+                <a href="" class="logo" id="header-logo-link">
+                    <img src="" id="header-logo-img" alt="CKP Germany Logo" class="logo-image">
                 </a>
-
                 <nav class="nav" id="nav">
                     <ul class="nav-links">
-                        <li><a href="index.html" class="nav-link" id="nav-home">HOME</a></li>
-                        <li><a href="about.html" class="nav-link" id="nav-about">ÜBER UNS</a></li>
+                        <li><a href="" class="nav-link" id="nav-home">HOME</a></li>
+                        <li><a href="" class="nav-link" id="nav-about">ÜBER UNS</a></li>
                         <li class="nav-dropdown">
                             <a href="#" class="nav-link" id="nav-shop">SHOP</a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="shops/tactical/tactical.html" id="dd-tactical">
-                                        <span class="dropdown-icon tactical-icon">🛡️</span>
-                                        <span>CKP Tactical</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shops/care/care.html" id="dd-care">
-                                        <span class="dropdown-icon care-icon">⚕️</span>
-                                        <span>CKP Care</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shops/merch/merch.html" id="dd-merch">
-                                        <span class="dropdown-icon merch-icon">🖊️</span>
-                                        <span>CKP Merch</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shops/workwear/workwear.html" id="dd-workwear">
-                                        <span class="dropdown-icon workwear-icon">👷</span>
-                                        <span>CKP Workwear</span>
-                                    </a>
-                                </li>
+                                <li><a href="" id="dd-tactical"><span class="dropdown-icon tactical-icon">🛡️</span><span>CKP Tactical</span></a></li>
+                                <li><a href="" id="dd-care"><span class="dropdown-icon care-icon">⚕️</span><span>CKP Care</span></a></li>
+                                <li><a href="" id="dd-merch"><span class="dropdown-icon merch-icon">🖊️</span><span>CKP Merch</span></a></li>
+                                <li><a href="" id="dd-workwear"><span class="dropdown-icon workwear-icon">👷</span><span>CKP Workwear</span></a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html" class="nav-link" id="nav-contact">KONTAKT</a></li>
+                        <li><a href="" class="nav-link" id="nav-contact">KONTAKT</a></li>
                     </ul>
-
                     <div class="lang-switcher">
                         <a href="" id="lang-de" class="lang-btn active">DE</a>
                         <a href="" id="lang-en" class="lang-btn">EN</a>
                     </div>
                 </nav>
-
                 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
             </div>
@@ -199,70 +123,51 @@
         if (!container) return;
         container.innerHTML = headerHTML;
 
-        // ── Dynamic root path (works at any folder depth) ──────────────────
-        const segs = window.location.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
-        // segs for de/index.html        → ['de', 'index.html']          depth 1 → root = '../'
-        // segs for de/shops/tactical/   → ['de','shops','tactical','x'] depth 3 → root = '../../../'
-        const depth = segs.length - 1; // number of folders below root
-        const root  = depth > 0 ? '../'.repeat(depth) : './';
+        // ── BASE path — change to '/' if using a custom domain ─────────────
+        const BASE = '/ckp_germany/';
 
-        // Logo
-        document.querySelectorAll('[data-logo]').forEach(el => { el.src = root + '../images/logos/logo.png'; });
+        // ── Logo & all links ───────────────────────────────────────────────
+        document.getElementById('header-logo-img').src   = BASE + 'images/logos/logo.png';
+        document.getElementById('header-logo-link').href = BASE + 'de/index.html';
+        document.getElementById('nav-home').href          = BASE + 'de/index.html';
+        document.getElementById('nav-about').href         = BASE + 'de/about.html';
+        document.getElementById('nav-contact').href       = BASE + 'de/contact.html';
+        document.getElementById('dd-tactical').href       = BASE + 'de/shops/tactical/tactical.html';
+        document.getElementById('dd-care').href           = BASE + 'de/shops/care/care.html';
+        document.getElementById('dd-merch').href          = BASE + 'de/shops/merch/merch.html';
+        document.getElementById('dd-workwear').href       = BASE + 'de/shops/workwear/workwear.html';
+        document.getElementById('lang-de').href           = BASE + 'de/index.html';
+        document.getElementById('lang-en').href           = BASE + 'en/index.html';
 
-        // ── Fix all nav/dropdown links to be root-relative ─────────────────
-        // From de/index.html (depth 1): root = '../', so root+'de/index.html' = '../de/index.html' ✓
-        // From de/shops/tactical/ (depth 3): root = '../../../', so root+'de/shops/tactical/tactical.html' ✓
-        document.getElementById('header-logo-link').href          = root + 'de/index.html';
-        document.getElementById('nav-home').href                  = root + 'de/index.html';
-        document.getElementById('nav-about').href                 = root + 'de/about.html';
-        document.getElementById('nav-contact').href               = root + 'de/contact.html';
-        document.getElementById('dd-tactical').href               = root + 'de/shops/tactical/tactical.html';
-        document.getElementById('dd-care').href                   = root + 'de/shops/care/care.html';
-        document.getElementById('dd-merch').href                  = root + 'de/shops/merch/merch.html';
-        document.getElementById('dd-workwear').href               = root + 'de/shops/workwear/workwear.html';
-        document.getElementById('lang-de').href                   = root + 'de/index.html';
-        document.getElementById('lang-en').href                   = root + 'en/index.html';
-
-        // ── Active nav link ────────────────────────────────────────────────
+        // ── Active nav ─────────────────────────────────────────────────────
         const path = window.location.pathname;
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        if (path.includes('/shops/')) {
-            document.getElementById('nav-shop').classList.add('active');
-        } else if (path.includes('about'))   { document.getElementById('nav-about').classList.add('active'); }
-        else if (path.includes('contact'))   { document.getElementById('nav-contact').classList.add('active'); }
-        else                                 { document.getElementById('nav-home').classList.add('active'); }
+        if      (path.includes('/shops/'))  { document.getElementById('nav-shop').classList.add('active'); }
+        else if (path.includes('about'))    { document.getElementById('nav-about').classList.add('active'); }
+        else if (path.includes('contact'))  { document.getElementById('nav-contact').classList.add('active'); }
+        else                                { document.getElementById('nav-home').classList.add('active'); }
 
-        // ── Scroll behaviour ───────────────────────────────────────────────
+        // ── Scroll ─────────────────────────────────────────────────────────
         const header = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.pageYOffset > 50);
-        });
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.pageYOffset > 50));
 
         // ── Mobile menu ────────────────────────────────────────────────────
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const nav       = document.getElementById('nav');
-        if (mobileBtn && nav) {
-            mobileBtn.addEventListener('click', () => nav.classList.toggle('active'));
-        }
-
+        const nav = document.getElementById('nav');
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => nav.classList.toggle('active'));
         document.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => {
             link.addEventListener('click', function() {
-                if (!this.parentElement.classList.contains('nav-dropdown')) {
-                    nav.classList.remove('active');
-                }
+                if (!this.parentElement.classList.contains('nav-dropdown')) nav.classList.remove('active');
             });
         });
 
-        // ── Smooth scroll for anchor links ─────────────────────────────────
+        // ── Smooth scroll ──────────────────────────────────────────────────
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href !== '#') {
                     e.preventDefault();
                     const target = document.querySelector(href);
-                    if (target) {
-                        window.scrollTo({ top: target.offsetTop - header.offsetHeight, behavior: 'smooth' });
-                    }
+                    if (target) window.scrollTo({ top: target.offsetTop - header.offsetHeight, behavior: 'smooth' });
                 }
             });
         });
