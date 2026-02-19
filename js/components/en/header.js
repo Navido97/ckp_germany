@@ -126,6 +126,29 @@
         // ── BASE path — change to '/' if using a custom domain ─────────────
         const BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:' ? '/' : '/ckp_germany/';
 
+        // ── Favicon: crop left ~25% of logo (the dots symbol) ──────────────
+        (function() {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                const cropWidth = Math.round(img.naturalWidth * 0.25);
+                const size = 64;
+                const canvas = document.createElement('canvas');
+                canvas.width = size; canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#1a1a1a';
+                ctx.fillRect(0, 0, size, size);
+                ctx.drawImage(img, 0, 0, cropWidth, img.naturalHeight, 4, 4, size - 8, size - 8);
+                const link = document.getElementById('ckp-favicon') || document.createElement('link');
+                link.id   = 'ckp-favicon';
+                link.rel  = 'icon';
+                link.type = 'image/png';
+                link.href = canvas.toDataURL('image/png');
+                document.head.appendChild(link);
+            };
+            img.src = BASE + 'images/logos/logo.png';
+        })();
+
         // ── Logo & all links ───────────────────────────────────────────────
         document.getElementById('header-logo-img').src   = BASE + 'images/logos/logo.png';
         document.getElementById('header-logo-link').href = BASE + 'en/index.html';
