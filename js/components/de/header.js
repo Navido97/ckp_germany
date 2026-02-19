@@ -124,7 +124,7 @@
         container.innerHTML = headerHTML;
 
         // ── BASE path — change to '/' if using a custom domain ─────────────
-        const BASE = '/ckp_germany/';
+        const BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:' ? '/' : '/ckp_germany/';
 
         // ── Logo & all links ───────────────────────────────────────────────
         document.getElementById('header-logo-img').src   = BASE + 'images/logos/logo.png';
