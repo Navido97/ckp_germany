@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie-Einstellungen — CKP Germany GmbH</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --orange: #ff6b35; --orange-light: #ff8c42; --dark: #1a1a1a; --dark-2: #2d2d2d; --bg: #f5f5f5; --text: #333; --muted: #777; --border: #e8e8e8; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding-top: 80px; }
+        .legal-hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 100%); padding: 4rem 2rem; position: relative; overflow: hidden; }
+        .legal-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--orange) 0%, var(--orange-light) 100%); }
+        .legal-hero::after { content: 'COOKIES'; position: absolute; right: 4rem; top: 50%; transform: translateY(-50%); font-size: 7rem; font-weight: 800; color: rgba(255,255,255,0.03); pointer-events: none; }
+        .legal-hero .container { max-width: 900px; margin: 0 auto; }
+        .legal-hero .label { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 1rem; }
+        .legal-hero h1 { font-size: 2.5rem; font-weight: 800; color: white; }
+        .legal-body { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+        .legal-card { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 1.5rem; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .legal-card h2 { font-size: 1rem; font-weight: 700; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+        .legal-card p { color: var(--text); line-height: 1.8; margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .legal-card p:last-child { margin-bottom: 0; }
+        .legal-card a { color: var(--orange); text-decoration: none; }
+        .legal-card a:hover { text-decoration: underline; }
+
+        /* Cookie Toggle Row */
+        .cookie-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+        }
+        .cookie-row:last-of-type { border-bottom: none; padding-bottom: 0; }
+        .cookie-row:first-of-type { padding-top: 0; }
+        .cookie-info { flex: 1; padding-right: 2rem; }
+        .cookie-info h3 { font-size: 1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.3rem; }
+        .cookie-info p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin: 0; }
+        .cookie-badge {
+            display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+            padding: 0.2rem 0.6rem; border-radius: 20px; margin-left: 0.5rem; vertical-align: middle;
+        }
+        .badge-required { background: #e8f5e9; color: #2e7d32; }
+        .badge-optional { background: #fff3e0; color: #e65100; }
+
+        /* Toggle Switch */
+        .toggle { position: relative; width: 52px; height: 28px; flex-shrink: 0; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute; inset: 0; background: #ddd; border-radius: 28px;
+            cursor: pointer; transition: background 0.3s ease;
+        }
+        .toggle-slider::before {
+            content: ''; position: absolute; height: 20px; width: 20px;
+            left: 4px; bottom: 4px; background: white; border-radius: 50%;
+            transition: transform 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input:checked + .toggle-slider { background: var(--orange); }
+        input:checked + .toggle-slider::before { transform: translateX(24px); }
+        input:disabled + .toggle-slider { opacity: 0.6; cursor: not-allowed; }
+
+        /* Save button */
+        .save-btn {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            padding: 0.9rem 2rem; border-radius: 10px; font-size: 0.9rem; font-weight: 700;
+            cursor: pointer; transition: all 0.3s ease; border: none;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+            color: white; margin-top: 1.5rem;
+        }
+        .save-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,107,53,0.35); }
+
+        .accept-all-btn {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            padding: 0.9rem 2rem; border-radius: 10px; font-size: 0.9rem; font-weight: 700;
+            cursor: pointer; transition: all 0.3s ease;
+            background: transparent; border: 2px solid var(--orange); color: var(--orange);
+            margin-top: 1.5rem; margin-right: 1rem;
+        }
+        .accept-all-btn:hover { background: var(--orange); color: white; }
+
+        .saved-msg { display: none; align-items: center; gap: 0.5rem; color: #2e7d32; font-weight: 600; font-size: 0.9rem; margin-top: 1rem; }
+        .saved-msg.visible { display: flex; }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <div class="legal-hero">
+        <div class="container">
+            <div class="label">Einstellungen</div>
+            <h1>Cookie-Einstellungen</h1>
+        </div>
+    </div>
+
+    <div class="legal-body">
+
+        <div class="legal-card">
+            <h2>Ihre Privatsphäre</h2>
+            <p>Wir verwenden Cookies und ähnliche Technologien auf unserer Website. Einige sind technisch notwendig, andere helfen uns, das Nutzererlebnis zu verbessern und unser Angebot zu optimieren.</p>
+            <p>Sie können selbst entscheiden, welche Kategorien Sie zulassen möchten. Bitte beachten Sie, dass aufgrund Ihrer Einstellungen möglicherweise nicht alle Funktionen der Website zur Verfügung stehen. Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+        </div>
+
+        <div class="legal-card">
+            <h2>Cookie-Kategorien</h2>
+
+            <div class="cookie-row">
+                <div class="cookie-info">
+                    <h3>Notwendige Cookies <span class="cookie-badge badge-required">ERFORDERLICH</span></h3>
+                    <p>Diese Cookies sind für den Betrieb der Website unverzichtbar und können nicht deaktiviert werden. Sie ermöglichen grundlegende Funktionen wie Navigation und Zugang zu gesicherten Bereichen.</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="cookie-necessary" checked disabled>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="cookie-row">
+                <div class="cookie-info">
+                    <h3>Analyse-Cookies <span class="cookie-badge badge-optional">OPTIONAL</span></h3>
+                    <p>Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren. Alle Daten werden anonymisiert gesammelt und ausgewertet.</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="cookie-analytics">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="cookie-row">
+                <div class="cookie-info">
+                    <h3>Marketing-Cookies <span class="cookie-badge badge-optional">OPTIONAL</span></h3>
+                    <p>Diese Cookies werden verwendet, um Werbeanzeigen relevanter für Sie und Ihre Interessen zu gestalten und Werbemaßnahmen zu messen.</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="cookie-marketing">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="cookie-row">
+                <div class="cookie-info">
+                    <h3>Präferenz-Cookies <span class="cookie-badge badge-optional">OPTIONAL</span></h3>
+                    <p>Diese Cookies ermöglichen der Website, Informationen zu speichern, die das Verhalten oder Aussehen der Website beeinflussen (z.B. bevorzugte Sprache).</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="cookie-preferences">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div style="margin-top: 0.5rem;">
+                <button class="accept-all-btn" onclick="acceptAll()">Alle akzeptieren</button>
+                <button class="save-btn" onclick="saveSettings()">Auswahl speichern</button>
+                <div class="saved-msg" id="saved-msg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    Einstellungen gespeichert
+                </div>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <h2>Weitere Informationen</h2>
+            <p>Für weitere Informationen über den Einsatz von Cookies und Ihre Datenschutzrechte lesen Sie bitte unsere <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            <p>Sie können Ihre Einstellungen jederzeit auf dieser Seite ändern. Außerdem können Sie Cookies über die Einstellungen Ihres Browsers verwalten oder löschen.</p>
+        </div>
+
+    </div>
+
+    <div id="footer-container"></div>
+    <script defer src="../js/components/de/header.js"></script>
+    <script defer src="../js/components/de/footer.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script defer src="../js/cursor-follower.js"></script>
+    <script>
+        // Load saved preferences
+        window.addEventListener('DOMContentLoaded', function() {
+            const prefs = JSON.parse(localStorage.getItem('ckp-cookie-prefs') || '{}');
+            if (prefs.analytics)    document.getElementById('cookie-analytics').checked    = true;
+            if (prefs.marketing)    document.getElementById('cookie-marketing').checked    = true;
+            if (prefs.preferences)  document.getElementById('cookie-preferences').checked  = true;
+        });
+
+        function saveSettings() {
+            const prefs = {
+                necessary:   true,
+                analytics:   document.getElementById('cookie-analytics').checked,
+                marketing:   document.getElementById('cookie-marketing').checked,
+                preferences: document.getElementById('cookie-preferences').checked
+            };
+            localStorage.setItem('ckp-cookie-prefs', JSON.stringify(prefs));
+            const msg = document.getElementById('saved-msg');
+            msg.classList.add('visible');
+            setTimeout(() => msg.classList.remove('visible'), 3000);
+        }
+
+        function acceptAll() {
+            document.getElementById('cookie-analytics').checked    = true;
+            document.getElementById('cookie-marketing').checked    = true;
+            document.getElementById('cookie-preferences').checked  = true;
+            saveSettings();
+        }
+    </script>
+</body>
+</html>

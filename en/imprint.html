@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprint — CKP Germany GmbH</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --orange: #ff6b35; --orange-light: #ff8c42; --dark: #1a1a1a; --dark-2: #2d2d2d; --bg: #f5f5f5; --text: #333; --muted: #777; --border: #e8e8e8; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding-top: 80px; }
+        .legal-hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 100%); padding: 4rem 2rem; position: relative; overflow: hidden; }
+        .legal-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--orange) 0%, var(--orange-light) 100%); }
+        .legal-hero::after { content: 'IMPRINT'; position: absolute; right: 4rem; top: 50%; transform: translateY(-50%); font-size: 7rem; font-weight: 800; color: rgba(255,255,255,0.03); pointer-events: none; }
+        .legal-hero .container { max-width: 900px; margin: 0 auto; }
+        .legal-hero .label { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 1rem; }
+        .legal-hero h1 { font-size: 2.5rem; font-weight: 800; color: white; }
+        .legal-body { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+        .legal-card { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 1.5rem; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .legal-card h2 { font-size: 1rem; font-weight: 700; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+        .legal-card p { color: var(--text); line-height: 1.8; margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .legal-card p:last-child { margin-bottom: 0; }
+        .info-grid { display: grid; grid-template-columns: 160px 1fr; gap: 0.6rem 1.5rem; font-size: 0.95rem; line-height: 1.7; }
+        .info-grid .key { color: var(--muted); font-weight: 500; }
+        .info-grid .val { color: var(--dark); }
+        .info-grid a { color: var(--orange); text-decoration: none; }
+        .info-grid a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <div class="legal-hero">
+        <div class="container">
+            <div class="label">Legal</div>
+            <h1>Imprint</h1>
+        </div>
+    </div>
+
+    <div class="legal-body">
+
+        <div class="legal-card">
+            <h2>Information pursuant to § 5 TMG</h2>
+            <div class="info-grid">
+                <span class="key">Company</span>
+                <span class="val">CKP Germany GmbH</span>
+
+                <span class="key">Address</span>
+                <span class="val">Kommodore-Johnsen-Boulevard 19<br>28217 Bremen<br>Germany</span>
+
+                <span class="key">Managing Directors</span>
+                <span class="val">Yunus Kaya<br>Deniz Pakkan</span>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <h2>Contact</h2>
+            <div class="info-grid">
+                <span class="key">Phone</span>
+                <span class="val"><a href="tel:+4942149173222">+49 (0) 421 49 173 222</a></span>
+
+                <span class="key">Email</span>
+                <span class="val"><a href="mailto:info@ckp-germany.de">info@ckp-germany.de</a></span>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <h2>Commercial Register</h2>
+            <div class="info-grid">
+                <span class="key">Register Court</span>
+                <span class="val">Amtsgericht Bremen (Local Court Bremen)</span>
+
+                <span class="key">Register Number</span>
+                <span class="val">HRB 42237 HB</span>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <h2>Liability for Content</h2>
+            <p>As a service provider, we are responsible for our own content on these pages in accordance with § 7 para. 1 TMG under general law. According to §§ 8 to 10 TMG, however, we as a service provider are not obligated to monitor transmitted or stored third-party information.</p>
+            <p>Obligations to remove or block the use of information under general law remain unaffected. However, liability in this regard is only possible from the time of knowledge of a specific legal violation. Upon becoming aware of such violations, we will remove this content immediately.</p>
+        </div>
+
+        <div class="legal-card">
+            <h2>Liability for Links</h2>
+            <p>Our offer contains links to external websites of third parties, on whose contents we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the pages is always responsible for the content of the linked pages.</p>
+            <p>The linked pages were checked for possible legal violations at the time of linking. Illegal content was not recognizable at the time of linking. Upon becoming aware of legal violations, we will remove such links immediately.</p>
+        </div>
+
+        <div class="legal-card">
+            <h2>Copyright</h2>
+            <p>The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution and any kind of exploitation outside the limits of copyright law require the written consent of the respective author or creator.</p>
+            <p>Downloads and copies of this site are only permitted for private, non-commercial use. Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected.</p>
+        </div>
+
+    </div>
+
+    <div id="footer-container"></div>
+    <script defer src="../js/components/en/header.js"></script>
+    <script defer src="../js/components/en/footer.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script defer src="../js/cursor-follower.js"></script>
+</body>
+</html>

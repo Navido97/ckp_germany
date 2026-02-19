@@ -89,10 +89,10 @@
 
                 <div class="footer-bottom">
                     <div class="footer-bottom-links">
-                        <a href="#">Datenschutz</a>
-                        <a href="#">Impressum</a>
-                        <a href="#">AGB</a>
-                        <a href="#">Cookie-Einstellungen</a>
+                        <a id="fl-datenschutz">Datenschutz</a>
+                        <a id="fl-impressum">Impressum</a>
+                        <a id="fl-agb">AGB</a>
+                        <a id="fl-cookie">Cookie-Einstellungen</a>
                     </div>
                     <p>&copy; ${new Date().getFullYear()} CKP Germany GmbH. Alle Rechte vorbehalten.</p>
                 </div>
@@ -116,6 +116,10 @@
         document.getElementById('fl-merch').href        = BASE + 'de/shops/merch/merch.html';
         document.getElementById('fl-workwear').href     = BASE + 'de/shops/workwear/workwear.html';
         document.getElementById('fl-contact').href      = BASE + 'de/contact.html';
+        document.getElementById('fl-datenschutz').href  = BASE + 'de/datenschutz.html';
+        document.getElementById('fl-impressum').href    = BASE + 'de/impressum.html';
+        document.getElementById('fl-agb').href          = BASE + 'de/agb.html';
+        document.getElementById('fl-cookie').href       = BASE + 'de/cookie-einstellungen.html';
     }
 
     if (document.readyState === 'loading') {

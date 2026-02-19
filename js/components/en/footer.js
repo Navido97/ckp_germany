@@ -89,10 +89,10 @@
 
                 <div class="footer-bottom">
                     <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Imprint</a>
-                        <a href="#">Terms & Conditions</a>
-                        <a href="#">Cookie Settings</a>
+                        <a id="fl-privacy">Privacy Policy</a>
+                        <a id="fl-imprint">Imprint</a>
+                        <a id="fl-terms">Terms & Conditions</a>
+                        <a id="fl-cookie">Cookie Settings</a>
                     </div>
                     <p>&copy; ${new Date().getFullYear()} CKP Germany GmbH. All rights reserved.</p>
                 </div>
@@ -109,13 +109,17 @@
         const BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:' ? '/' : '/ckp_germany/';
 
         document.getElementById('footer-logo-img').src = BASE + 'images/logos/logo.png';
-        document.getElementById('fl-home').href         = BASE + 'en/index.html';
-        document.getElementById('fl-about').href        = BASE + 'en/about.html';
-        document.getElementById('fl-tactical').href     = BASE + 'en/shops/tactical/tactical.html';
-        document.getElementById('fl-care').href         = BASE + 'en/shops/care/care.html';
-        document.getElementById('fl-merch').href        = BASE + 'en/shops/merch/merch.html';
-        document.getElementById('fl-workwear').href     = BASE + 'en/shops/workwear/workwear.html';
-        document.getElementById('fl-contact').href      = BASE + 'en/contact.html';
+        document.getElementById('fl-home').href     = BASE + 'en/index.html';
+        document.getElementById('fl-about').href    = BASE + 'en/about.html';
+        document.getElementById('fl-tactical').href = BASE + 'en/shops/tactical/tactical.html';
+        document.getElementById('fl-care').href     = BASE + 'en/shops/care/care.html';
+        document.getElementById('fl-merch').href    = BASE + 'en/shops/merch/merch.html';
+        document.getElementById('fl-workwear').href = BASE + 'en/shops/workwear/workwear.html';
+        document.getElementById('fl-contact').href  = BASE + 'en/contact.html';
+        document.getElementById('fl-privacy').href  = BASE + 'en/privacy.html';
+        document.getElementById('fl-imprint').href  = BASE + 'en/imprint.html';
+        document.getElementById('fl-terms').href    = BASE + 'en/terms.html';
+        document.getElementById('fl-cookie').href   = BASE + 'en/cookie-settings.html';
     }
 
     if (document.readyState === 'loading') {
