@@ -1,48 +1,27 @@
-// Footer Component with HTML, CSS, and JavaScript
+// EN Footer Component — updated with all 4 shops and dynamic paths
 (function() {
     const footerHTML = `
         <style>
             .footer {
                 background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-                color: #fff;
-                padding: 4rem 2rem 2rem;
-                position: relative;
-                overflow: hidden;
+                color: #fff; padding: 4rem 2rem 2rem;
+                position: relative; overflow: hidden;
             }
-
             .footer::before {
-                content: '';
-                position: absolute;
-                top: 0; left: 0; right: 0;
-                height: 4px;
+                content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
                 background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 50%, #ff6b35 100%);
-                background-size: 200% 100%;
-                animation: gradientMove 3s ease infinite;
+                background-size: 200% 100%; animation: gradientMove 3s ease infinite;
             }
-
             @keyframes gradientMove {
                 0%, 100% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
+                50%       { background-position: 100% 50%; }
             }
-
             .footer-container { max-width: 1400px; margin: 0 auto; }
-
-            .footer-content {
-                display: grid;
-                grid-template-columns: 2fr 1fr 1fr 1fr;
-                gap: 3rem;
-                margin-bottom: 3rem;
-            }
-
+            .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
             .footer-section h3 { font-size: 1.2rem; margin-bottom: 1.5rem; color: #ff6b35; font-weight: 600; }
             .footer-about { max-width: 400px; }
             .footer-logo { display: flex; align-items: center; margin-bottom: 1.5rem; }
-
-            .footer-logo-image {
-                width: 150px; height: auto; object-fit: contain;
-                filter: brightness(0) invert(1); opacity: 0.9;
-            }
-
+            .footer-logo-image { width: 150px; height: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.9; }
             .footer-about p { color: #b0b0b0; line-height: 1.7; margin-bottom: 1.5rem; }
             .footer-links { list-style: none; padding: 0; margin: 0; }
             .footer-links li { margin-bottom: 0.75rem; }
@@ -51,22 +30,18 @@
             .footer-contact-item { display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem; color: #b0b0b0; }
             .footer-contact-item svg { width: 20px; height: 20px; color: #ff6b35; flex-shrink: 0; margin-top: 2px; }
             .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
-
             .social-link {
                 width: 40px; height: 40px; border-radius: 50%;
                 background: rgba(255,255,255,0.1);
                 display: flex; align-items: center; justify-content: center;
                 color: #fff; text-decoration: none; transition: all 0.3s ease;
             }
-
             .social-link:hover { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); transform: translateY(-3px); }
             .social-link svg { width: 20px; height: 20px; }
-
             .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; text-align: center; color: #808080; font-size: 0.9rem; }
             .footer-bottom-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
             .footer-bottom-links a { color: #808080; text-decoration: none; transition: color 0.3s ease; }
             .footer-bottom-links a:hover { color: #ff6b35; }
-
             @media (max-width: 1024px) { .footer-content { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
             @media (max-width: 768px) {
                 .footer { padding: 3rem 1.5rem 1.5rem; }
@@ -79,6 +54,7 @@
         <footer class="footer">
             <div class="footer-container">
                 <div class="footer-content">
+
                     <div class="footer-section footer-about">
                         <div class="footer-logo">
                             <img src="" data-logo="true" alt="CKP Germany Logo" class="footer-logo-image">
@@ -99,12 +75,14 @@
 
                     <div class="footer-section">
                         <h3>Quick Links</h3>
-                        <ul class="footer-links">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="shops/tactical/tactical.html">CKP Tactical</a></li>
-                            <li><a href="shops/care/care.html">CKP Care</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                        <ul class="footer-links" id="footer-quick-links">
+                            <li><a id="fl-home">Home</a></li>
+                            <li><a id="fl-about">About Us</a></li>
+                            <li><a id="fl-tactical">CKP Tactical</a></li>
+                            <li><a id="fl-care">CKP Care</a></li>
+                            <li><a id="fl-merch">CKP Merch</a></li>
+                            <li><a id="fl-workwear">CKP Workwear</a></li>
+                            <li><a id="fl-contact">Contact</a></li>
                         </ul>
                     </div>
 
@@ -114,7 +92,8 @@
                             <li><a href="#">Protective Equipment</a></li>
                             <li><a href="#">Tactical Clothing</a></li>
                             <li><a href="#">Medical Equipment</a></li>
-                            <li><a href="#">Special Equipment</a></li>
+                            <li><a href="#">Workwear</a></li>
+                            <li><a href="#">Merchandise</a></li>
                             <li><a href="#">Accessories</a></li>
                         </ul>
                     </div>
@@ -127,11 +106,11 @@
                         </div>
                         <div class="footer-contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                            <div><a href="mailto:info@ckp-germany.de" style="color: #b0b0b0;">info@ckp-germany.de</a></div>
+                            <div><a href="mailto:info@ckp-germany.de" style="color:#b0b0b0;">info@ckp-germany.de</a></div>
                         </div>
                         <div class="footer-contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                            <div><a href="tel:+491234567890" style="color: #b0b0b0;">+49 (0) 123 456 7890</a></div>
+                            <div><a href="tel:+491234567890" style="color:#b0b0b0;">+49 (0) 123 456 7890</a></div>
                         </div>
                     </div>
                 </div>
@@ -151,25 +130,37 @@
 
     function insertFooter() {
         const container = document.getElementById('footer-container');
-        if (container) {
-            container.innerHTML = footerHTML;
+        if (!container) return;
+        container.innerHTML = footerHTML;
 
-            // Dynamic logo path — works at any folder depth
-            const _segs = window.location.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
-            const _root = _segs.length > 1 ? '../'.repeat(_segs.length - 1) : './';
-            document.querySelectorAll('[data-logo]').forEach(el => { el.src = _root + 'images/logos/logo.png'; });
+        // ── Dynamic root path ──────────────────────────────────────────────
+        const segs  = window.location.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
+        const depth = segs.length - 1;
+        const root  = depth > 0 ? '../'.repeat(depth) : './';
 
-            document.querySelectorAll('.footer-links a[href^="#"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const header = document.querySelector('.header');
-                        window.scrollTo({ top: target.offsetTop - (header ? header.offsetHeight : 0), behavior: 'smooth' });
-                    }
-                });
+        // Logo
+        document.querySelectorAll('[data-logo]').forEach(el => { el.src = root + 'images/logos/logo.png'; });
+
+        // Quick Links — all pointing to EN pages
+        document.getElementById('fl-home').href     = root + 'en/index.html';
+        document.getElementById('fl-about').href    = root + 'en/about.html';
+        document.getElementById('fl-tactical').href = root + 'en/shops/tactical/tactical.html';
+        document.getElementById('fl-care').href     = root + 'en/shops/care/care.html';
+        document.getElementById('fl-merch').href    = root + 'en/shops/merch/merch.html';
+        document.getElementById('fl-workwear').href = root + 'en/shops/workwear/workwear.html';
+        document.getElementById('fl-contact').href  = root + 'en/contact.html';
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('.footer-links a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const header = document.querySelector('.header');
+                    window.scrollTo({ top: target.offsetTop - (header ? header.offsetHeight : 0), behavior: 'smooth' });
+                }
             });
-        }
+        });
     }
 
     if (document.readyState === 'loading') {
