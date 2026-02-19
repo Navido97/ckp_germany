@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKP Workwear - Shop</title>
+
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="../../../css/main.css">
+    <link rel="stylesheet" href="../../../css/sections/hero.css">
+    <!-- Shop-specific CSS (shared from de folder) -->
+    <link rel="stylesheet" href="../../../de/shops/workwear/workwear-shop.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body data-division="workwear">
+    <div id="header-container"></div>
+
+    <section class="hero hero-small shop-hero">
+        <div class="hero-image">
+            <img src="../../../images/workwear_hero.jpg" alt="CKP Workwear" class="hero-img">
+        </div>
+        <div class="animated-background"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-badge">PROFESSIONAL WORKWEAR</div>
+                <h1 class="hero-title">
+                    PREMIUM WORKWEAR<br>
+                    FOR <span class="highlight">PROFESSIONALS</span>
+                </h1>
+                <p class="hero-subtitle">
+                    High-quality workwear for trades, industry and security services
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="shop-section">
+        <div class="shop-container">
+            <aside class="shop-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">CATEGORIES</h3>
+                    <div id="categories-list" class="categories-list"></div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">PROTECTION CLASS</h3>
+                    <div class="protection-filters">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="en471" data-filter="protection">
+                            <span>EN 471 (Hi-Vis)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="en11611" data-filter="protection">
+                            <span>EN 11611 (Welding)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="en13034" data-filter="protection">
+                            <span>EN 13034 (Chemical)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="sidebar-cta">
+                    <div class="cta-icon">🏗️</div>
+                    <h4>Custom Requirements?</h4>
+                    <p>We offer tailored solutions for companies and large orders.</p>
+                    <button class="btn-sm open-contact-popup">Direct Inquiry</button>
+                </div>
+            </aside>
+
+            <div class="shop-main">
+                <div class="shop-header">
+                    <div class="shop-info">
+                        <h2 id="category-title">CKP Workwear</h2>
+                        <p id="products-count">Loading...</p>
+                    </div>
+                    <div class="shop-controls">
+                        <select id="sort-select" class="sort-select">
+                            <option value="popularity">Sort: Popularity</option>
+                            <option value="name-asc">Name: A-Z</option>
+                            <option value="name-desc">Name: Z-A</option>
+                            <option value="newest">Newest first</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="products-grid" class="products-grid"></div>
+
+                <div class="pagination">
+                    <button class="pagination-btn" id="prev-page" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div id="pagination-numbers"></div>
+                    <button class="pagination-btn" id="next-page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+
+    <!-- Shared JS -->
+    <script defer src="../../../js/components/en/header.js"></script>
+    <script defer src="../../../js/components/en/footer.js"></script>
+    <script defer src="../../../js/main.js"></script>
+    <script defer src="../../../js/cursor-follower.js"></script>
+    <script defer src="../../../js/contact-popup.js"></script>
+    <!-- Shop JS — shared from de folder, language auto-detected via /en/ in URL -->
+    <script defer src="../../../de/shops/workwear/workwear-sheets.js"></script>
+    <script defer src="../../../de/shops/workwear/workwear-shop.js"></script>
+    <script defer src="../../../de/shops/workwear/workwear-inquiry.js"></script>
+</body>
+</html>
