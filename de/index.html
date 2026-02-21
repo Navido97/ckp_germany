@@ -13,6 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        @media (max-width: 480px) { .hero-buttons { flex-direction: column; } }
+    </style>
 </head>
 <body>
     <div id="header-container"></div>
@@ -32,7 +36,10 @@
                 <p class="hero-subtitle">
                     Professioneller Schutz und erstklassige Ausstattung für Sicherheit, Justizvollzug und Rettungsdienste.
                 </p>
-                <a href="#divisions" class="btn btn-primary">Mehr erfahren</a>
+                <div class="hero-buttons">
+                    <a href="#divisions" class="btn btn-primary">Mehr erfahren</a>
+                    <button class="btn btn-secondary open-contact-popup">Kontakt aufnehmen</button>
+                </div>
             </div>
         </div>
     </section>
@@ -144,5 +151,6 @@
     <script defer src="../js/components/de/footer.js"></script>
     <script defer src="../js/main.js"></script>
     <script defer src="../js/cursor-follower.js"></script>
+    <script defer src="../js/contact-popup.js"></script>
 </body>
 </html>
