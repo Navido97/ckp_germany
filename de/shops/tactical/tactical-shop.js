@@ -19,9 +19,7 @@
 
     async function init() {
         console.log('[TacticalShop] ✅ Script loaded');
-
         currentLanguage = window.location.pathname.includes('/en/') ? 'en' : 'de';
-
         await loadProducts();
         renderCategories();
         renderProducts();
@@ -30,7 +28,6 @@
 
     async function loadProducts() {
         try {
-            // 1. Try Google Sheets (loaded by tactical-sheets.js)
             if (window.loadSheetProducts) {
                 const sheetsProducts = await window.loadSheetProducts();
                 if (sheetsProducts && sheetsProducts.length > 0) {
@@ -39,13 +36,10 @@
                     return;
                 }
             }
-
-            // 2. Fallback to JSON — path is now ../../data/ since we're two levels deep
             console.log('[TacticalShop] Falling back to JSON...');
             const res = await fetch('../../data/products.json');
             productsData = await res.json();
             console.log('[TacticalShop] JSON loaded:', productsData.products.length, 'products');
-
         } catch (err) {
             console.error('[TacticalShop] Failed to load products:', err);
             productsData = { divisions: {}, products: [] };
@@ -70,24 +64,18 @@
         };
     }
 
-    // ─── RENDERING ──────────────────────────────────────────────────────────────
-
     function renderCategories() {
         const container = document.getElementById('categories-list');
         if (!container || !productsData) return;
-
         const divisionData     = productsData.divisions[DIVISION];
         if (!divisionData) return;
-
         const divisionProducts = productsData.products.filter(p => p.division === DIVISION);
-
         const categories = [
             { id: 'all', name: { de: 'Alle Produkte', en: 'All Products' }, count: divisionProducts.length },
             ...divisionData.categories
                 .map(cat => ({ ...cat, count: divisionProducts.filter(p => p.category === cat.id).length }))
                 .filter(cat => cat.count > 0)
         ];
-
         container.innerHTML = categories.map(cat => `
             <button class="category-item ${cat.id === currentCategory ? 'active' : ''}" data-category="${cat.id}">
                 <span>${cat.name[currentLanguage]}</span>
@@ -107,7 +95,6 @@
             products = products.filter(p => p.category === currentCategory);
         }
 
-        // Update header text
         const divisionData = productsData.divisions[DIVISION];
         if (titleEl && divisionData) {
             if (currentCategory === 'all') {
@@ -126,28 +113,29 @@
         }
 
         grid.innerHTML = products.map((product, idx) => renderProductCard(product, idx)).join('');
-
-        // Bind card interactions after render
         bindCardEvents();
     }
 
     function renderProductCard(product, idx) {
-        const lang     = currentLanguage;
-        const name     = product.name[lang];
-        const tag      = product.tags[lang][0] || '';
-        const specs    = product.specs[lang].join(' / ');
-        const badge    = product.badge ? product.badge[lang] : null;
-        const images   = product.images || [product.imageURL];
-        const multi    = images.length > 1;
+        const lang   = currentLanguage;
+        const name   = product.name[lang];
+        const tag    = product.tags[lang][0] || '';
+        const specs  = product.specs[lang].join(' / ');
+        const badge  = product.badge ? product.badge[lang] : null;
+        const images = product.images || [product.imageURL];
+        const multi  = images.length > 1;
+        const rawPrice = product.price;
+        let price = null;
+        if (rawPrice && rawPrice !== 'Auf Anfrage' && rawPrice !== 'auf anfrage') {
+            const num = parseFloat(String(rawPrice).replace(/[^0-9.,]/g, '').replace(',', '.'));
+            price = isNaN(num) ? rawPrice : `€${num.toFixed(2)}`;
+        } else if (rawPrice === 'Auf Anfrage') {
+            price = lang === 'de' ? 'Auf Anfrage' : 'On Request';
+        }
 
         const imgHTML = images.map((src, i) => `
-            <img
-                src="${src}"
-                alt="${name}"
-                class="product-image ${i === 0 ? 'active' : ''}"
-                data-index="${i}"
-                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/1a1a1a/ff6b35?text=${encodeURIComponent(name)}';"
-            >
+            <img src="${src}" alt="${name}" class="product-image ${i === 0 ? 'active' : ''}" data-index="${i}"
+                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/1a1a1a/ff6b35?text=${encodeURIComponent(name)}';">
         `).join('');
 
         const navHTML = multi ? `
@@ -173,6 +161,7 @@
                     <div class="product-category">${tag}</div>
                     <h3 class="product-name">${name}</h3>
                     <div class="product-colors">${specs}</div>
+                    ${price ? `<div class="product-price">${price}</div>` : ''}
                     <button class="product-cta">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -187,7 +176,6 @@
 
     function bindCardEvents() {
         document.querySelectorAll('.product-card').forEach(card => {
-            // Open inquiry on content click
             card.querySelector('.product-content').addEventListener('click', () => {
                 const product = productsData.products.find(p => p.id === card.dataset.productId);
                 if (!product) return;
@@ -196,7 +184,6 @@
                 }));
             });
 
-            // Image navigation
             const images = card.querySelectorAll('.product-image');
             const dots   = card.querySelectorAll('.dot');
             const prev   = card.querySelector('.image-nav-prev');
@@ -215,10 +202,7 @@
         });
     }
 
-    // ─── EVENTS ─────────────────────────────────────────────────────────────────
-
     function attachEventListeners() {
-        // Category filter (delegated)
         document.addEventListener('click', e => {
             const btn = e.target.closest('.category-item');
             if (!btn) return;
@@ -229,7 +213,6 @@
             document.querySelector('.products-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
-        // Sort
         document.getElementById('sort-select')?.addEventListener('change', function() {
             const grid  = document.getElementById('products-grid');
             const cards = Array.from(grid.querySelectorAll('.product-card'));
@@ -238,7 +221,6 @@
                 const nb = b.querySelector('.product-name').textContent;
                 if (this.value === 'name-asc')  return na.localeCompare(nb);
                 if (this.value === 'name-desc') return nb.localeCompare(na);
-                // popularity: badges first
                 const ba = !!a.querySelector('.product-badge');
                 const bb = !!b.querySelector('.product-badge');
                 return (bb ? 1 : 0) - (ba ? 1 : 0);

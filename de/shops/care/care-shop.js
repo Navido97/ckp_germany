@@ -123,6 +123,14 @@
         const badge  = product.badge ? product.badge[lang] : null;
         const images = product.images || [product.imageURL];
         const multi  = images.length > 1;
+        const rawPrice = product.price;
+        let price = null;
+        if (rawPrice && rawPrice !== 'Auf Anfrage' && rawPrice !== 'auf anfrage') {
+            const num = parseFloat(String(rawPrice).replace(/[^0-9.,]/g, '').replace(',', '.'));
+            price = isNaN(num) ? rawPrice : `€${num.toFixed(2)}`;
+        } else if (rawPrice === 'Auf Anfrage') {
+            price = lang === 'de' ? 'Auf Anfrage' : 'On Request';
+        }
 
         const imgHTML = images.map((src, i) => `
             <img src="${src}" alt="${name}" class="product-image ${i === 0 ? 'active' : ''}" data-index="${i}"
@@ -152,6 +160,7 @@
                     <div class="product-category">${tag}</div>
                     <h3 class="product-name">${name}</h3>
                     <div class="product-specs">${specs}</div>
+                    ${price ? `<div class="product-price">${price}</div>` : ''}
                     <button class="product-cta">
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
