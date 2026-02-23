@@ -6,6 +6,15 @@
 (function() {
     'use strict';
 
+    // Skip on touch/mobile devices — no mouse cursor needed
+    if (
+        window.matchMedia('(max-width: 768px)').matches ||
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0
+    ) {
+        return;
+    }
+
     // Check if user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return;
@@ -64,18 +73,10 @@
         .custom-cursor.visible {
             opacity: 1;
         }
-
-        /* Mobile: hide custom cursor */
-        @media (max-width: 768px) {
-            .custom-cursor {
-                display: none;
-            }
-        }
     `;
     
     document.head.appendChild(style);
     document.body.appendChild(cursor);
-    // Don't hide default cursor - just add follower
 
     // Track mouse position
     let mouseX = 0;
@@ -86,12 +87,10 @@
 
     // Smooth cursor follow
     function updateCursor() {
-        // Smooth lerp effect - faster for better centering
         const speed = 0.2;
         cursorX += (mouseX - cursorX) * speed;
         cursorY += (mouseY - cursorY) * speed;
         
-        // Center the cursor by subtracting half its width/height
         cursor.style.left = `${cursorX}px`;
         cursor.style.top = `${cursorY}px`;
         
