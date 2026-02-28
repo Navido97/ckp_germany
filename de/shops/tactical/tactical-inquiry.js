@@ -286,16 +286,17 @@
         submitBtn.querySelector('span').textContent = currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...';
 
         try {
+            const f = form.elements; // use .elements to avoid reserved DOM props (form.name = form's name attr)
             const body = new URLSearchParams({
                 'form-name':    'tactical-inquiry',
                 'product':      currentProduct.name[currentLanguage],
                 'sku':          currentProduct.sku,
-                'name':         form.name.value,
-                'organization': form.organization.value,
-                'email':        form.email.value,
-                'phone':        form.phone.value,
-                'quantity':     form.quantity.value,
-                'message':      form.message.value
+                'name':         f['name'].value,
+                'organization': f['organization'].value,
+                'email':        f['email'].value,
+                'phone':        f['phone'].value,
+                'quantity':     f['quantity'].value,
+                'message':      f['message'].value
             });
 
             const res = await fetch('/', {
