@@ -1,4 +1,4 @@
-// DE Header Component — GitHub Pages compatible (BASE: /ckp_germany/)
+// DE Header Component — GitHub Pages compatible (BASE: /)
 (function() {
     const headerHTML = `
         <style>
@@ -124,7 +124,7 @@
         container.innerHTML = headerHTML;
 
         // ── BASE path — change to '/' if using a custom domain ─────────────
-        const BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:' ? '/' : '/ckp_germany/';
+        const BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:' ? '/' : '/';
 
         // ── Favicon: crop left ~25% of logo (the dots symbol) ──────────────
         (function() {

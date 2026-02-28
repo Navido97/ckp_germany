@@ -1,4 +1,4 @@
-// EN Footer Component — GitHub Pages compatible (BASE: /ckp_germany/)
+// EN Footer Component — GitHub Pages compatible (BASE: /)
 (function() {
     const footerHTML = `
         <style>
@@ -106,7 +106,7 @@
         container.innerHTML = footerHTML;
 
         // ── BASE path — change to '/' if using a custom domain ─────────────
-        const BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:' ? '/' : '/ckp_germany/';
+        const BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:' ? '/' : '/';
 
         document.getElementById('footer-logo-img').src = BASE + 'images/logos/logo.png';
         document.getElementById('fl-home').href     = BASE + 'en/index.html';
