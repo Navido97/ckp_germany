@@ -34,10 +34,7 @@
                     </button>
                     <div class="care-grid">
                         <div class="care-product-side">
-                            <button class="care-back">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                <span id="back-text">ZURÜCK ZUM KATALOG</span>
-                            </button>
+                            <button class="care-back"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg><span id="back-text">ZURÜCK ZUM KATALOG</span></button>
                             <div class="care-image-area">
                                 <div class="care-images-container"></div>
                                 <button class="care-nav care-nav-prev" style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
@@ -48,16 +45,17 @@
                                 <h2 id="care-product-name"></h2>
                                 <div id="care-product-sku" class="care-sku"></div>
                                 <div id="care-product-description" class="care-description"></div>
-                                <div id="care-product-features" class="care-features">
-                                    <h4 id="care-features-title">PRODUKTSPEZIFIKATIONEN</h4>
-                                    <ul id="care-features-list"></ul>
-                                </div>
+                                <div id="care-product-features" class="care-features"><h4 id="care-features-title">PRODUKTSPEZIFIKATIONEN</h4><ul id="care-features-list"></ul></div>
                             </div>
                         </div>
                         <div class="care-form-side">
                             <h2 id="care-form-title">Anfrage stellen</h2>
                             <p id="care-form-subtitle">Bitte geben Sie Ihre Daten und Anforderungen an.</p>
-                            <form id="care-inquiry-form" class="care-form">
+                            <form id="care-inquiry-form" class="care-form" name="care-inquiry" netlify netlify-honeypot="bot-field">
+                                <input type="hidden" name="form-name" value="care-inquiry">
+                                <input type="hidden" name="bot-field" style="display:none">
+                                <input type="hidden" name="product" id="care-hidden-product">
+                                <input type="hidden" name="sku" id="care-hidden-sku">
                                 <div class="care-row-2">
                                     <div class="care-group"><label id="lbl-name">Vollständiger Name</label><input type="text" name="name" required></div>
                                     <div class="care-group"><label id="lbl-org">Einrichtung / Organisation</label><input type="text" name="organization" required></div>
@@ -90,13 +88,7 @@
                 .care-popup { position:fixed; top:0; left:0; right:0; bottom:0; z-index:10001; display:none; overflow-y:auto; }
                 .care-popup.active { display:block; }
                 .care-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(10,40,65,0.85); backdrop-filter:blur(8px); animation:careFadeIn 0.3s ease; }
-                .care-content {
-                    position:relative; max-width:1100px; margin:2rem auto;
-                    background:#ffffff; border-radius:20px;
-                    border:1px solid #c8e0f4;
-                    box-shadow:0 30px 80px rgba(26,122,191,0.2);
-                    overflow:hidden; animation:careSlideUp 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
-                }
+                .care-content { position:relative; max-width:1100px; margin:2rem auto; background:#ffffff; border-radius:20px; border:1px solid #c8e0f4; box-shadow:0 30px 80px rgba(26,122,191,0.2); overflow:hidden; animation:careSlideUp 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
                 .care-close { position:absolute; top:1.25rem; right:1.25rem; width:38px; height:38px; background:#f0f7fd; border:1px solid #c8e0f4; border-radius:50%; color:#1a7abf; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s ease; z-index:10; }
                 .care-close:hover { background:#1a7abf; color:white; border-color:#1a7abf; transform:rotate(90deg); }
                 .care-grid { display:grid; grid-template-columns:55% 45%; }
@@ -159,6 +151,8 @@
         document.body.style.overflow = 'hidden';
         fillProduct();
         updateLabels();
+        document.getElementById('care-hidden-product').value = currentProduct.name[currentLanguage];
+        document.getElementById('care-hidden-sku').value     = currentProduct.sku;
     }
 
     function closePopup() {
@@ -218,25 +212,25 @@
 
     function updateLabels() {
         const de = currentLanguage === 'de';
-        document.getElementById('back-text').textContent         = de ? 'ZURÜCK ZUM KATALOG'                     : 'BACK TO CATALOG';
-        document.getElementById('care-form-title').textContent   = de ? 'Anfrage stellen'                         : 'Request Information';
-        document.getElementById('care-form-subtitle').textContent= de ? 'Bitte geben Sie Ihre Daten an. Unser Team antwortet innerhalb von 24 Stunden.' : 'Please provide your details. Our team will respond within 24 hours.';
-        document.getElementById('lbl-name').textContent          = de ? 'Vollständiger Name'                      : 'Full Name';
-        document.getElementById('lbl-org').textContent           = de ? 'Einrichtung / Organisation'              : 'Institution / Organization';
-        document.getElementById('lbl-email').textContent         = de ? 'E-Mail-Adresse'                          : 'Email Address';
-        document.getElementById('lbl-phone').textContent         = de ? 'Telefonnummer'                           : 'Phone Number';
-        document.getElementById('lbl-quantity').textContent      = de ? 'Benötigte Menge'                         : 'Quantity Needed';
-        document.getElementById('lbl-message').textContent       = de ? 'Besondere Anforderungen oder Nachricht'  : 'Special Requirements or Message';
-        document.getElementById('care-cancel').textContent       = de ? 'Abbrechen'                               : 'Cancel';
-        document.getElementById('care-submit-text').textContent  = de ? 'Anfrage absenden'                        : 'Submit Inquiry';
-        document.getElementById('sec1').textContent              = de ? 'SICHERE ÜBERTRAGUNG'                     : 'SECURE TRANSFER';
-        document.getElementById('sec2').textContent              = de ? 'MEDIZINISCH GEPRÜFT'                     : 'MEDICALLY VERIFIED';
-        document.getElementById('care-features-title').textContent = de ? 'PRODUKTSPEZIFIKATIONEN'               : 'PRODUCT SPECIFICATIONS';
-        document.getElementById('care-success-msg').textContent  = de ? 'Vielen Dank! Ihre Anfrage wurde erfolgreich übermittelt.' : 'Thank you! Your inquiry has been submitted.';
+        document.getElementById('back-text').textContent          = de ? 'ZURÜCK ZUM KATALOG'                     : 'BACK TO CATALOG';
+        document.getElementById('care-form-title').textContent    = de ? 'Anfrage stellen'                         : 'Request Information';
+        document.getElementById('care-form-subtitle').textContent = de ? 'Bitte geben Sie Ihre Daten an. Unser Team antwortet innerhalb von 24 Stunden.' : 'Please provide your details. Our team will respond within 24 hours.';
+        document.getElementById('lbl-name').textContent           = de ? 'Vollständiger Name'                      : 'Full Name';
+        document.getElementById('lbl-org').textContent            = de ? 'Einrichtung / Organisation'              : 'Institution / Organization';
+        document.getElementById('lbl-email').textContent          = de ? 'E-Mail-Adresse'                          : 'Email Address';
+        document.getElementById('lbl-phone').textContent          = de ? 'Telefonnummer'                           : 'Phone Number';
+        document.getElementById('lbl-quantity').textContent       = de ? 'Benötigte Menge'                         : 'Quantity Needed';
+        document.getElementById('lbl-message').textContent        = de ? 'Besondere Anforderungen oder Nachricht'  : 'Special Requirements or Message';
+        document.getElementById('care-cancel').textContent        = de ? 'Abbrechen'                               : 'Cancel';
+        document.getElementById('care-submit-text').textContent   = de ? 'Anfrage absenden'                        : 'Submit Inquiry';
+        document.getElementById('sec1').textContent               = de ? 'SICHERE ÜBERTRAGUNG'                     : 'SECURE TRANSFER';
+        document.getElementById('sec2').textContent               = de ? 'MEDIZINISCH GEPRÜFT'                     : 'MEDICALLY VERIFIED';
+        document.getElementById('care-features-title').textContent = de ? 'PRODUKTSPEZIFIKATIONEN'                 : 'PRODUCT SPECIFICATIONS';
+        document.getElementById('care-success-msg').textContent   = de ? 'Vielen Dank! Ihre Anfrage wurde erfolgreich übermittelt.' : 'Thank you! Your inquiry has been submitted.';
     }
 
     function attachListeners() {
-        const popup  = document.getElementById('product-inquiry-popup');
+        const popup = document.getElementById('product-inquiry-popup');
         popup.querySelector('.care-overlay').addEventListener('click', closePopup);
         popup.querySelector('.care-close').addEventListener('click', closePopup);
         popup.querySelector('.care-back').addEventListener('click', closePopup);
@@ -255,12 +249,33 @@
         document.getElementById('care-submit-text').textContent = currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...';
 
         try {
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            const body = new URLSearchParams({
+                'form-name':    'care-inquiry',
+                'product':      currentProduct.name[currentLanguage],
+                'sku':          currentProduct.sku,
+                'name':         form.name.value,
+                'organization': form.organization.value,
+                'email':        form.email.value,
+                'phone':        form.phone.value,
+                'quantity':     form.quantity.value,
+                'message':      form.message.value
+            });
+
+            const res = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: body.toString()
+            });
+
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
             document.getElementById('care-success').classList.remove('hidden');
             form.reset();
             setTimeout(closePopup, 3000);
+
         } catch (err) {
             console.error('[CareInquiry] Error:', err);
+            alert(currentLanguage === 'de' ? 'Ein Fehler ist aufgetreten.' : 'An error occurred.');
         } finally {
             submitBtn.disabled = false;
             document.getElementById('care-submit-text').textContent = origText;

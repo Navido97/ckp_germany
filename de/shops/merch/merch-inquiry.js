@@ -34,10 +34,7 @@
                     </button>
                     <div class="merch-grid">
                         <div class="merch-product-side">
-                            <button class="merch-back">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                <span id="back-text">ZURÜCK ZUM SHOP</span>
-                            </button>
+                            <button class="merch-back"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg><span id="back-text">ZURÜCK ZUM SHOP</span></button>
                             <div class="merch-image-area">
                                 <div class="merch-images-container"></div>
                                 <button class="merch-nav merch-nav-prev" style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
@@ -49,16 +46,17 @@
                                 <div id="merch-product-price" class="merch-price"></div>
                                 <div id="merch-product-sku" class="merch-sku"></div>
                                 <div id="merch-product-description" class="merch-description"></div>
-                                <div id="merch-product-features" class="merch-features">
-                                    <h4 id="merch-features-title">PRODUKTDETAILS</h4>
-                                    <ul id="merch-features-list"></ul>
-                                </div>
+                                <div id="merch-product-features" class="merch-features"><h4 id="merch-features-title">PRODUKTDETAILS</h4><ul id="merch-features-list"></ul></div>
                             </div>
                         </div>
                         <div class="merch-form-side">
                             <h2 id="merch-form-title">Bestellung aufgeben</h2>
                             <p id="merch-form-subtitle">Füllen Sie das Formular aus und wir melden uns bei Ihnen.</p>
-                            <form id="merch-inquiry-form" class="merch-form">
+                            <form id="merch-inquiry-form" class="merch-form" name="merch-inquiry" netlify netlify-honeypot="bot-field">
+                                <input type="hidden" name="form-name" value="merch-inquiry">
+                                <input type="hidden" name="bot-field" style="display:none">
+                                <input type="hidden" name="product" id="merch-hidden-product">
+                                <input type="hidden" name="sku" id="merch-hidden-sku">
                                 <div class="merch-row-2">
                                     <div class="merch-group"><label id="lbl-name">Vollständiger Name</label><input type="text" name="name" required></div>
                                     <div class="merch-group"><label id="lbl-email">E-Mail-Adresse</label><input type="email" name="email" required></div>
@@ -158,6 +156,8 @@
         document.body.style.overflow = 'hidden';
         fillProduct();
         updateLabels();
+        document.getElementById('merch-hidden-product').value = currentProduct.name[currentLanguage];
+        document.getElementById('merch-hidden-sku').value     = currentProduct.sku;
     }
 
     function closePopup() {
@@ -218,21 +218,21 @@
 
     function updateLabels() {
         const de = currentLanguage === 'de';
-        document.getElementById('back-text').textContent           = de ? 'ZURÜCK ZUM SHOP'                       : 'BACK TO SHOP';
-        document.getElementById('merch-form-title').textContent    = de ? 'Bestellung aufgeben'                   : 'Place an Order';
-        document.getElementById('merch-form-subtitle').textContent = de ? 'Füllen Sie das Formular aus und wir melden uns bei Ihnen.' : 'Fill in the form and we will get back to you.';
-        document.getElementById('lbl-name').textContent            = de ? 'Vollständiger Name'                    : 'Full Name';
-        document.getElementById('lbl-email').textContent           = de ? 'E-Mail-Adresse'                        : 'Email Address';
-        document.getElementById('lbl-phone').textContent           = de ? 'Telefonnummer'                         : 'Phone Number';
-        document.getElementById('lbl-quantity').textContent        = de ? 'Menge'                                 : 'Quantity';
-        document.getElementById('lbl-variant').textContent         = de ? 'Variante / Größe / Farbe'              : 'Variant / Size / Color';
-        document.getElementById('lbl-message').textContent         = de ? 'Anmerkungen oder Sonderwünsche'        : 'Notes or Special Requests';
-        document.getElementById('merch-cancel').textContent        = de ? 'Abbrechen'                             : 'Cancel';
-        document.getElementById('merch-submit-text').textContent   = de ? 'Bestellung absenden'                   : 'Submit Order';
-        document.getElementById('sec1').textContent                = de ? 'SICHERE ÜBERTRAGUNG'                   : 'SECURE TRANSFER';
-        document.getElementById('sec2').textContent                = de ? 'SCHNELLER VERSAND'                     : 'FAST SHIPPING';
-        document.getElementById('merch-features-title').textContent = de ? 'PRODUKTDETAILS'                      : 'PRODUCT DETAILS';
-        document.getElementById('merch-success-msg').textContent   = de ? 'Vielen Dank! Ihre Bestellung wurde erfolgreich übermittelt.' : 'Thank you! Your order has been submitted.';
+        document.getElementById('back-text').textContent            = de ? 'ZURÜCK ZUM SHOP'                        : 'BACK TO SHOP';
+        document.getElementById('merch-form-title').textContent     = de ? 'Bestellung aufgeben'                    : 'Place an Order';
+        document.getElementById('merch-form-subtitle').textContent  = de ? 'Füllen Sie das Formular aus und wir melden uns bei Ihnen.' : 'Fill in the form and we will get back to you.';
+        document.getElementById('lbl-name').textContent             = de ? 'Vollständiger Name'                     : 'Full Name';
+        document.getElementById('lbl-email').textContent            = de ? 'E-Mail-Adresse'                         : 'Email Address';
+        document.getElementById('lbl-phone').textContent            = de ? 'Telefonnummer'                          : 'Phone Number';
+        document.getElementById('lbl-quantity').textContent         = de ? 'Menge'                                  : 'Quantity';
+        document.getElementById('lbl-variant').textContent          = de ? 'Variante / Größe / Farbe'               : 'Variant / Size / Color';
+        document.getElementById('lbl-message').textContent          = de ? 'Anmerkungen oder Sonderwünsche'         : 'Notes or Special Requests';
+        document.getElementById('merch-cancel').textContent         = de ? 'Abbrechen'                              : 'Cancel';
+        document.getElementById('merch-submit-text').textContent    = de ? 'Bestellung absenden'                    : 'Submit Order';
+        document.getElementById('sec1').textContent                 = de ? 'SICHERE ÜBERTRAGUNG'                    : 'SECURE TRANSFER';
+        document.getElementById('sec2').textContent                 = de ? 'SCHNELLER VERSAND'                      : 'FAST SHIPPING';
+        document.getElementById('merch-features-title').textContent = de ? 'PRODUKTDETAILS'                        : 'PRODUCT DETAILS';
+        document.getElementById('merch-success-msg').textContent    = de ? 'Vielen Dank! Ihre Bestellung wurde erfolgreich übermittelt.' : 'Thank you! Your order has been submitted.';
     }
 
     function attachListeners() {
@@ -255,12 +255,33 @@
         document.getElementById('merch-submit-text').textContent = currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...';
 
         try {
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            const body = new URLSearchParams({
+                'form-name': 'merch-inquiry',
+                'product':   currentProduct.name[currentLanguage],
+                'sku':       currentProduct.sku,
+                'name':      form.name.value,
+                'email':     form.email.value,
+                'phone':     form.phone.value,
+                'quantity':  form.quantity.value,
+                'variant':   form.variant.value,
+                'message':   form.message.value
+            });
+
+            const res = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: body.toString()
+            });
+
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
             document.getElementById('merch-success').classList.remove('hidden');
             form.reset();
             setTimeout(closePopup, 3000);
+
         } catch (err) {
             console.error('[MerchInquiry] Error:', err);
+            alert(currentLanguage === 'de' ? 'Ein Fehler ist aufgetreten.' : 'An error occurred.');
         } finally {
             submitBtn.disabled = false;
             document.getElementById('merch-submit-text').textContent = origText;

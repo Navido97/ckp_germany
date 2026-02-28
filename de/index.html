@@ -151,6 +151,70 @@
 
     <div id="footer-container"></div>
 
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         NETLIFY FORM DETECTION — hidden static forms so Netlify registers them
+         at deploy time. The actual submissions come from JS (fetch).
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <div style="display:none" aria-hidden="true">
+        <!-- General contact form -->
+        <form name="contact" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="bot-field">
+            <input type="text" name="name">
+            <input type="email" name="email">
+            <input type="text" name="subject">
+            <textarea name="message"></textarea>
+        </form>
+        <!-- Tactical product inquiry -->
+        <form name="tactical-inquiry" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="bot-field">
+            <input type="text" name="name">
+            <input type="text" name="organization">
+            <input type="email" name="email">
+            <input type="tel" name="phone">
+            <input type="text" name="product">
+            <input type="text" name="sku">
+            <input type="number" name="quantity">
+            <textarea name="message"></textarea>
+        </form>
+        <!-- Care product inquiry -->
+        <form name="care-inquiry" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="bot-field">
+            <input type="text" name="name">
+            <input type="text" name="organization">
+            <input type="email" name="email">
+            <input type="tel" name="phone">
+            <input type="text" name="product">
+            <input type="text" name="sku">
+            <input type="number" name="quantity">
+            <textarea name="message"></textarea>
+        </form>
+        <!-- Workwear product inquiry -->
+        <form name="workwear-inquiry" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="bot-field">
+            <input type="text" name="name">
+            <input type="text" name="organization">
+            <input type="email" name="email">
+            <input type="tel" name="phone">
+            <input type="text" name="product">
+            <input type="text" name="sku">
+            <input type="number" name="quantity">
+            <textarea name="message"></textarea>
+        </form>
+        <!-- Merch order inquiry -->
+        <form name="merch-inquiry" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="bot-field">
+            <input type="text" name="name">
+            <input type="email" name="email">
+            <input type="tel" name="phone">
+            <input type="text" name="product">
+            <input type="text" name="sku">
+            <input type="number" name="quantity">
+            <input type="text" name="variant">
+            <textarea name="message"></textarea>
+        </form>
+    </div>
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+
     <script defer src="../js/components/de/header.js"></script>
     <script defer src="../js/components/de/footer.js"></script>
     <script defer src="../js/main.js"></script>
