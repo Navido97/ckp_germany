@@ -140,10 +140,10 @@
         `).join('');
 
         const navHTML = multi ? `
-            <button class="image-nav image-nav-prev">
+            <button class="image-nav image-nav-prev" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
             </button>
-            <button class="image-nav image-nav-next">
+            <button class="image-nav image-nav-next" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
             <div class="image-dots">
@@ -163,7 +163,7 @@
                     <h3 class="product-name">${name}</h3>
                     <div class="product-specs">${specs}</div>
                     ${price ? `<div class="product-price">${price}</div>` : ''}
-                    <button class="product-cta">
+                    <button class="product-cta" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                             <polyline points="22,6 12,13 2,6"></polyline>
@@ -177,14 +177,19 @@
 
     function bindCardEvents() {
         document.querySelectorAll('.product-card').forEach(card => {
-            card.querySelector('.product-content').addEventListener('click', () => {
-                const product = productsData.products.find(p => p.id === card.dataset.productId);
+            const productId = card.dataset.productId;
+
+            // ── Button only — not the whole card ─────────────────────────────────
+            card.querySelector('.product-cta').addEventListener('click', (e) => {
+                e.stopPropagation();
+                const product = productsData.products.find(p => p.id === productId);
                 if (!product) return;
                 window.dispatchEvent(new CustomEvent('openProductInquiry', {
                     detail: { product, language: currentLanguage }
                 }));
             });
 
+            // ── Image carousel ────────────────────────────────────────────────────
             const images = card.querySelectorAll('.product-image');
             const dots   = card.querySelectorAll('.dot');
             const prev   = card.querySelector('.image-nav-prev');
@@ -228,6 +233,7 @@
             });
             grid.innerHTML = '';
             cards.forEach(c => grid.appendChild(c));
+            bindCardEvents(); // re-bind after sort reorder
         });
     }
 
